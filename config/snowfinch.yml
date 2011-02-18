@@ -1,0 +1,5 @@
+development:
+  host: rails.fi:3000
+
+test:
+  host: rails.fi:3000
