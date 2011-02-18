@@ -15,6 +15,7 @@ end
 
 group :test do
   gem "autotest"
+  gem "autotest-growl", :require => false
   gem "capybara"
   gem "factory_girl_rails", ">= 1.1.beta1"
   gem "launchy"

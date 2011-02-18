@@ -40,6 +40,7 @@ GEM
     arel (2.0.8)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
+    autotest-growl (0.2.9)
     awesome_print (0.3.2)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
@@ -147,6 +148,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   autotest
+  autotest-growl
   awesome_print
   capybara
   devise
