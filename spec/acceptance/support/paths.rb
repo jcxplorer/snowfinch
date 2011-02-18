@@ -12,6 +12,10 @@ module NavigationHelpers
     "/sites"
   end
 
+  def users_page
+    "/users"
+  end
+
 end
 
 RSpec.configuration.include NavigationHelpers, :type => :acceptance

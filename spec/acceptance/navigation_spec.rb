@@ -11,8 +11,9 @@ feature "Navigation" do
     sign_in :user
 
     within "body > header nav" do
-      page.should have_link("Sites")
-      page.should have_link("Users")
+      page.should have_link("Sites", :href => sites_page)
+      page.should have_link("Users", :href => users_page)
+      page.should have_link("Sign out")
     end
   end
 
