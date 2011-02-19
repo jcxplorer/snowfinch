@@ -12,7 +12,9 @@ group :test do
   gem "autotest-growl", :require => false
   gem "capybara"
   gem "factory_girl_rails", ">= 1.1.beta1"
+  gem "fuubar"
   gem "launchy"
+  gem "shoulda-matchers", :require => false
   gem "spork", "~> 0.9.0.rc"
 end
 

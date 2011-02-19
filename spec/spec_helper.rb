@@ -1,11 +1,13 @@
 require "spork"
 
 Spork.prefork do
+  require "rails/application"
   Spork.trap_method(Rails::Application, :reload_routes!)
 
-  ENV["RAILS_ENV"] ||= 'test'
+  ENV["RAILS_ENV"] ||= "test"
   require File.expand_path("../../config/environment", __FILE__)
-  require 'rspec/rails'
+  require "rspec/rails"
+  require "shoulda-matchers"
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
