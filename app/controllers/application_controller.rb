@@ -10,4 +10,12 @@ class ApplicationController < ActionController::Base
     sites_path
   end
 
+  def navigation(identifier)
+    @navigation_id = identifier
+  end
+
+  def self.navigation(identifier)
+    before_filter { navigation(identifier) }
+  end
+
 end
