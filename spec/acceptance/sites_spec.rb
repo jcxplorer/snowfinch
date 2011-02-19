@@ -29,6 +29,7 @@ feature "Sites" do
     click_link "Add a site"
     current_path.should == new_site_page
     page.should have_title("Add a site")
+    page.should have_active_navigation("Sites")
 
     fill_in "Site name", :with => "Snowfinch info"
     click_button "Save"
@@ -44,6 +45,7 @@ feature "Sites" do
     visit site_page(site)
 
     page.should have_title("Snowfinch blog")
+    page.should have_active_navigation("Sites")
   end
 
   scenario "Editing a site" do
@@ -53,6 +55,7 @@ feature "Sites" do
     click_link "Edit"
 
     page.should have_title('Edit "Snowfinch blog"')
+    page.should have_active_navigation("Sites")
     current_path.should == edit_site_page(site)
 
     fill_in "Site name", :with => "Snowfinch development blog"
