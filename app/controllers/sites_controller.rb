@@ -4,7 +4,8 @@ class SitesController < ApplicationController
   navigation :sites
 
   def index
-    respond_with(@sites = Site.all)
+    @sites = Site.order(:name)
+    respond_with @sites
   end
 
   def show

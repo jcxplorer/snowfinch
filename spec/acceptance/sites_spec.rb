@@ -7,16 +7,20 @@ feature "Sites" do
   end
 
   scenario "Browsing sites" do
-    blog = Factory :site, :name => "Snowfinch blog"
-    dev  = Factory :site, :name => "Snowfinch developer"
+    blog = Factory :site, :name => "Blog"
+    api  = Factory :site, :name => "API docs"
+    info = Factory :site, :name => "Info"
 
     visit sites_page
 
     page.should have_title("Sites")
     page.should have_active_navigation("Sites")
 
-    page.should have_link("Snowfinch blog", :href => site_page(blog))
-    page.should have_link("Snowfinch developer", :href => site_page(dev))
+    page.should have_link("API docs", :href => site_page(api))
+    page.should have_link("Blog", :href => site_page(blog))
+    page.should have_link("Info", :href => site_page(info))
+
+    page.all("ul.list a").map(&:text).should == ["API docs", "Blog", "Info"]
   end
 
   scenario "Adding a site" do
