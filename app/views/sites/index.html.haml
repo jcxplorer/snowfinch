@@ -1,0 +1,7 @@
+= header "Sites" do
+  = link_to "Add a site", new_site_path
+
+- if @sites.any?
+  = list_for @sites, :name
+- else
+  %p You don't have any sites. Click "Add a site" to create one.

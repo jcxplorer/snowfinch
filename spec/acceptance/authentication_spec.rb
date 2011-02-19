@@ -13,7 +13,7 @@ feature "Authentication" do
     fill_in "Password", :with => "123456"
     click_button "Sign in"
 
-    page.should have_content("Welcome, you are now signed in.")
+    page.should have_notice("Welcome, you are now signed in.")
     current_path.should == sites_page
   end
 
@@ -21,14 +21,14 @@ feature "Authentication" do
     visit sites_page
 
     current_path.should == sign_in_page
-    page.should have_content("You must sign in to access the requested page.")
+    page.should have_notice("You must sign in to access the requested page.")
   end
 
   scenario "Failed sign in" do
     visit sign_in_page
     click_button "Sign in"
 
-    page.should have_content("Invalid email and/or password. Please try again.")
+    page.should have_notice("Invalid email and/or password. Please try again.")
   end
 
   scenario "Forgotten password" do
@@ -38,7 +38,7 @@ feature "Authentication" do
     fill_in "Email", :with => "jason@snowfinch.net"
     click_button "Send instructions"
 
-    page.should have_content("Password reset instructions have been emailed.")
+    page.should have_notice("Password reset instructions have been emailed.")
   end
 
   scenario "Logging out" do

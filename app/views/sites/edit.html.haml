@@ -1,0 +1,6 @@
+= header %{Edit "#{@site.name_was}"}
+
+= render "form"
+
+%p= button_to "Remove this site", @site, :method => :delete,
+              :confirm => "Are you sure? There is no going back!"

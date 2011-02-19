@@ -9,4 +9,8 @@ FactoryGirl.define do
     password "123456"
   end
 
+  factory :site do
+    name "Snowfinch"
+  end
+
 end

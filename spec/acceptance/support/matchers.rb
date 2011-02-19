@@ -8,6 +8,10 @@ module AcceptanceMatchers
     has_css?("body > header nav a.active", :text => link_text)
   end
 
+  def has_notice?(text)
+    has_css?("#flash", :text => text)
+  end
+
 end
 
 Capybara::Node::Base.send :include, AcceptanceMatchers

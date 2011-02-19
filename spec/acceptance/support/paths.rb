@@ -12,6 +12,18 @@ module NavigationHelpers
     "/sites"
   end
 
+  def site_page(site)
+    "/sites/#{site.id}"
+  end
+
+  def new_site_page
+    "/sites/new"
+  end
+
+  def edit_site_page(site)
+    "/sites/#{site.id}/edit"
+  end
+
   def users_page
     "/users"
   end
