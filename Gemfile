@@ -5,13 +5,7 @@ gem "rails", "3.0.4"
 gem "devise"
 gem "haml"
 gem "kisko-compass", :git => "git@github.com:kiskolabs/kisko-compass.git"
-gem "rdiscount"
-gem "RedCloth"
 gem "simple_form"
-
-group :development do
-  gem "awesome_print", :require => "ap"
-end
 
 group :test do
   gem "autotest"
