@@ -38,5 +38,11 @@ module Snowfinch
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    # We do acceptance testing.
+    config.app_generators.controller_specs false
+    config.app_generators.request_specs false
+    config.app_generators.routing_specs false
+    config.app_generators.view_specs false
   end
 end
