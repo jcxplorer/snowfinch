@@ -1,6 +1,8 @@
 require "spork"
 
 Spork.prefork do
+  Spork.trap_method(Rails::Application, :reload_routes!)
+
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
@@ -18,5 +20,9 @@ Spork.prefork do
 end
 
 Spork.each_run do
+  FactoryGirl.registry = FactoryGirl::Registry.new
+  load "factories.rb"
+
+  I18n.reload!
 end
 
