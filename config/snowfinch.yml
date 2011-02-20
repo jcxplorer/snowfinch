@@ -1,5 +1,8 @@
 development:
-  host: rails.fi:3000
+  host: "snowfinch.rails.fi:3000"
+  mailer_sender: "support@snowfinch.net"
 
 test:
-  host: rails.fi:3000
+  host: "snowfinch.rails.fi:3000"
+  mailer_sender: "support@snowfinch.net"
+
