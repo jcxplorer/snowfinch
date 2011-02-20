@@ -1,0 +1,8 @@
+= header "Add a user"
+
+%p
+  %em The user will receive an email with a password.
+
+= simple_form_for @user do |f|
+  = f.input :email
+  = f.button :submit, "Add"

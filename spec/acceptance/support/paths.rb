@@ -28,6 +28,14 @@ module NavigationHelpers
     "/users"
   end
 
+  def user_page(user)
+    "/users/#{user.id}"
+  end
+
+  def new_user_page
+    "/users/new"
+  end
+
 end
 
 RSpec.configuration.include NavigationHelpers, :type => :acceptance

@@ -1,0 +1,12 @@
+%h1 Account information for #{@host}
+
+%p 
+  Your #{link_to @host, "http://#{@host}"} account has been created.
+  %br
+  You can login with the following credentials:
+
+%p
+  Email: #{@user.email}
+  %br
+  Password: #{@user.password}
+
