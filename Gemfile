@@ -6,6 +6,11 @@ gem "devise"
 gem "haml"
 gem "kisko-compass", :git => "git@github.com:kiskolabs/kisko-compass.git"
 gem "simple_form"
+gem "mongo"
+gem "bson_ext"
+gem "snowfinch-collector",
+    :git => "git@github.com:jcxplorer/snowfinch-collector.git",
+    :require => "snowfinch/collector"
 
 group :test do
   gem "autotest"
