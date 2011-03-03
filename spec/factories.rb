@@ -11,6 +11,7 @@ FactoryGirl.define do
 
   factory :site do
     name "Snowfinch"
+    time_zone "Helsinki"
   end
 
 end

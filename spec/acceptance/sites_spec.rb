@@ -32,6 +32,7 @@ feature "Sites" do
     page.should have_active_navigation("Sites")
 
     fill_in "Site name", :with => "Snowfinch info"
+    select "Helsinki", :from => "Time zone"
     click_button "Save"
 
     page.should have_notice('"Snowfinch info" has been created.')
