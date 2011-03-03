@@ -9,6 +9,6 @@ test:
   mongo_database: "snowfinch_test"
 
 production:
-  host: "snowfinch.rails.fi:3000"
+  host: "nest.snowfinch.net"
   mailer_sender: "support@snowfinch.net"
   mongo_database: "snowfinch"
