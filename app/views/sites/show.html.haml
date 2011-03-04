@@ -1,4 +1,13 @@
 = header @site.name do
   = link_to "Edit", edit_site_path(@site)
 
-#content
+#counters{ :data => { :source => counters_site_path(@site) } }
+  .counter{ :data => { :period => "today" } }
+    %h2 Today
+    .value
+  .counter{ :data => { :period => "week" } }
+    %h2 This week
+    .value
+  .counter{ :data => { :period => "month" } }
+    %h2 This month
+    .value

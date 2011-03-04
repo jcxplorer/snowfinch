@@ -1,6 +1,7 @@
 class SitesController < ApplicationController
 
-  respond_to :html
+  respond_to :html, :except => [:counters]
+  respond_to :json, :only => [:counters]
   navigation :sites
 
   def index
@@ -40,6 +41,10 @@ class SitesController < ApplicationController
       flash.notice = %{"#{resource.name}" has been removed.}
     end
     respond_with resource
+  end
+
+  def counters
+    respond_with resource.counter_data
   end
 
   private
