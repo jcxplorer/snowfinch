@@ -10,13 +10,6 @@ function updateSiteCounters() {
   });
 }
 
-$.fn.flashText = function(color) {
-  var originalColor = this.css("color")
-  this.animate({ color: color }, 150, function() {
-    $(this).animate({ color: originalColor }, 150);
-  });
-}
-
 jQuery(function() {
   if ($("#counters[data-source]").length) {
     updateSiteCounters();
