@@ -6,7 +6,7 @@
         image = new Image(),
         encode = encodeURIComponent;
 
-    visitorInfo = document.cookie.match(/snowfinch=([0-9A-Z]{8}-[0-9A-Z]{4}-4[0-9A-Z]{3}-[89AB][0-9A-Z]{3}-[0-9A-Z]{12})/);
+    visitorInfo = document.cookie.match(/__snowfinch=([0-9a-z]{8}-[0-9a-z]{4}-4[0-9a-z]{3}-[89ab][0-9a-z]{3}-[0-9a-z]{12})/);
 
     if (visitorInfo == null) {
       for (i = 0; i < 32; i++) {
@@ -24,8 +24,8 @@
       cookieExpiryDate = new Date();
       cookieExpiryDate.setDate(cookieExpiryDate.getDate() + 7305);
       cookieValue = snowfinch.uuid +
-        "; expires=" + cookieExpiryDate.toUTCString();
-      document.cookie = "snowfinch=" + cookieValue;
+        "; expires=" + cookieExpiryDate.toUTCString() + "; path=/";
+      document.cookie = "__snowfinch=" + cookieValue;
     }
     else {
       snowfinch.uuid = visitorInfo[1];
