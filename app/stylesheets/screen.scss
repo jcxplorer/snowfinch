@@ -1,4 +1,11 @@
-@import "kisko";
-@import "partials/base";
-@import "partials/page";
+@import "kisko"; // imported from kisko-compass gem
+@import "partials/config"; // first load the congig scss with variables
+@import "partials/mixins"; // load required mixins
 
+#content {
+  @include kisko-grid-block($grid_columns);
+}
+
+.column {
+  @include kisko-grid-block(4);
+}
