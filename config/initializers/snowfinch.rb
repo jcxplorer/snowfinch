@@ -8,3 +8,11 @@ Snowfinch::Application.configure do
 end
 
 Snowfinch::Collector.db = Mongo.db
+
+if defined?(PhusionPassenger)
+  PhusionPassenger.on_event(:starting_worker_process) do |forked|
+    if forked
+      Mongo.db.connection.connect
+    end
+  end
+end
