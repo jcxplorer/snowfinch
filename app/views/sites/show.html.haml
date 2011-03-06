@@ -1,7 +1,7 @@
 = header @site.name do
   = link_to "Edit", edit_site_path(@site)
 
-#counters{ :data => { :source => counters_site_path(@site) } }
+#counters{ :data => { :source => counters_site_path(@site, :format => :json) } }
   .counter{ :data => { :counter => "visits" } }
     %h2 Active visits
     .value
