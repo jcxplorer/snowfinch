@@ -10,6 +10,32 @@ function updateSiteCounters() {
   });
 }
 
+function plotChart() {
+  $.getJSON($("#chart").data("source"), function(data) {
+    $.plot("#chart", [
+           { data: data.yesterday },
+           { data: data.today }
+    ],
+    {
+      lines: { show: true, fill: true },
+      points: { show: true },
+      colors: ["#ccc", "#d18b2c"],
+      yaxis: { min: 0, tickDecimals: 0 },
+      xaxis: { tickSize: 2, tickFormatter: function(number) {
+        if (number == 0) {
+          return "";
+        }
+        else if (number < 10) {
+          return "0" + number + ":00";
+        }
+        else {
+          return number + ":00";
+        };
+      } }
+    });
+  });
+}
+
 jQuery(function() {
   if ($("#counters[data-source]").length) {
     updateSiteCounters();
@@ -17,28 +43,7 @@ jQuery(function() {
   }
 
   if ($("#chart[data-source]").length) {
-    $.getJSON($("#chart").data("source"), function(data) {
-      $.plot("#chart", [
-        { data: data.yesterday },
-        { data: data.today }
-      ],
-      {
-        lines: { show: true, fill: true },
-        points: { show: true },
-        colors: ["#ccc", "#d18b2c"],
-        yaxis: { min: 0, tickDecimals: 0 },
-        xaxis: { tickSize: 2, tickFormatter: function(number) {
-          if (number == 0) {
-            return "";
-          }
-          else if (number < 10) {
-            return "0" + number + ":00";
-          }
-          else {
-            return number + ":00";
-          };
-        } }
-      });
-    });
+    plotChart();
+    setInterval(plotChart, 1000);
   }
 });
