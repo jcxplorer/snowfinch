@@ -17,3 +17,8 @@
     color: #333;
   }
 }
+
+#chart {
+  height: 300px;
+  @include kisko-grid-block(12);
+}

@@ -11,3 +11,5 @@
   .counter{ :data => { :counter => "visitors" } }
     %h2 Unique visitors today
     .value
+
+#chart{ :data => { :source => chart_site_path(@site, :format => :json ) } }

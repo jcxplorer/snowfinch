@@ -7,6 +7,7 @@ Snowfinch::Application.routes.draw do
   resources :sites do
     member do
       get :counters
+      get :chart
     end
   end
 

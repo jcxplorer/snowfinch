@@ -2,6 +2,14 @@ require "spec_helper"
 
 describe Site do
   
+  let :site do
+    Factory :site, :time_zone => "Helsinki"
+  end
+
+  let :site_counts do
+    Mongo.db["site_counts"]
+  end
+
   it { should validate_presence_of(:name) }
 
   describe "#time_zone_id" do
@@ -20,10 +28,6 @@ describe Site do
   end
   
   describe "#counter_data" do
-    let :site do
-      Factory :site, :time_zone => "Helsinki"
-    end
-
     it "contains the total pageviews for the current day" do
       sites = Mongo.db["site_counts"]
       sites.insert({
@@ -76,6 +80,38 @@ describe Site do
 
       Timecop.freeze(Time.utc(2011, 1, 2))
       site.counter_data[:visitors_today].should == 1
+    end
+  end
+
+  describe "#chart_data" do
+    it "contains today's pageviews" do
+      Timecop.freeze(Time.utc(2011, 6, 8, 12))
+
+      site_counts.insert({
+        "s" => site.bson_id, "y" => 2011,
+        "6" => { "8" => { "7" => { "c" => 100 }, "10" => { "c" => 300 } } }
+      })
+
+      expected = 16.times.map { |i| [i, 0] }
+      expected[7][1] = 100
+      expected[10][1] = 300
+
+      site.chart_data[:today].should == expected
+    end
+
+    it "contains yesterday's pageviews" do
+      Timecop.freeze(Time.utc(2011, 12, 7, 14))
+
+      site_counts.insert({
+        "s" => site.bson_id, "y" => 2011,
+        "12" => { "6" => { "3" => { "c" => 20 }, "6" => { "c" => 10 } } }
+      })
+
+      expected = 24.times.map { |i| [i, 0] }
+      expected[3][1] = 20
+      expected[6][1] = 10
+
+      site.chart_data[:yesterday].should == expected
     end
   end
 

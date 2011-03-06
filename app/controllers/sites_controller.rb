@@ -1,7 +1,7 @@
 class SitesController < ApplicationController
 
-  respond_to :html, :except => [:counters]
-  respond_to :json, :only => [:counters]
+  respond_to :html, :except => [:counters, :chart]
+  respond_to :json, :only => [:counters, :chart]
   navigation :sites
 
   def index
@@ -45,6 +45,10 @@ class SitesController < ApplicationController
 
   def counters
     respond_with resource.counter_data
+  end
+
+  def chart
+    respond_with resource.chart_data
   end
 
   private
