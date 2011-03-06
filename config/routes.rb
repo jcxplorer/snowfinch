@@ -4,7 +4,12 @@ Snowfinch::Application.routes.draw do
 
   match "/collector" => Snowfinch::Collector
 
-  resources :sites
+  resources :sites do
+    member do
+      get :counters
+    end
+  end
+
   resources :users
 
   root :to => "sites#index"

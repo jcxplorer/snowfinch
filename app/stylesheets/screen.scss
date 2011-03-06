@@ -6,6 +6,14 @@
   @include kisko-grid-block($grid_columns);
 }
 
-.column {
+.counter {
   @include kisko-grid-block(4);
+  color: #666;
+
+  .value {
+    @include text-shadow; 
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+  }
 }

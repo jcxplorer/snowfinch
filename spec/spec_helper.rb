@@ -21,6 +21,14 @@ Spork.prefork do
 
     config.before(:each) do
       Capybara.reset_sessions!
+
+      Mongo.db.collections.each do |collection|
+        collection.drop unless collection.name =~ /^system\./
+      end
+    end
+
+    config.after(:each) do
+      Timecop.return
     end
   end
 end

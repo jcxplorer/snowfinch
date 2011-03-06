@@ -22,6 +22,7 @@ group :test do
   gem "launchy"
   gem "shoulda-matchers", :require => false
   gem "spork", "~> 0.9.0.rc"
+  gem "timecop"
 end
 
 group :production do
