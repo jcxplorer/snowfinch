@@ -1,16 +1,17 @@
 GIT
   remote: git@github.com:jcxplorer/snowfinch-collector.git
-  revision: c8f06e4e261c418408fe0b3bee11936cc2f505db
+  revision: 01537eed0ca1ba15dd9cda97411ac0ada24dbce7
   specs:
-    snowfinch-collector (0.2.0)
+    snowfinch-collector (0.3.0)
       bson_ext
       mongo
       rack
+      radix62
       tzinfo
 
 GIT
   remote: git@github.com:kiskolabs/kisko-compass.git
-  revision: 3d1a2acc2270c3363199313e357a54c8588962aa
+  revision: 1e9935caf7cb74fbc912de08a44bfb15f07fd26b
   specs:
     kisko-compass (0.1.1)
       compass
@@ -110,6 +111,7 @@ GEM
       rack (>= 1.0.0)
     rack-test (0.5.7)
       rack (>= 1.0)
+    radix62 (0.1.0)
     rails (3.0.5)
       actionmailer (= 3.0.5)
       actionpack (= 3.0.5)
