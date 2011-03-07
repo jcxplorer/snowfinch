@@ -6,6 +6,15 @@
   @include kisko-grid-block($grid_columns);
 }
 
+a {
+  color: #333;
+}
+
+body > header nav {
+  position: relative;
+  top: 26px;
+}
+
 .counter {
   @include kisko-grid-block(4);
   color: #666;
@@ -21,4 +30,28 @@
 #chart {
   height: 300px;
   @include kisko-grid-block(12);
+}
+
+#sessions_new {
+  #container {
+    width: 490px;
+  }
+
+  #content {
+    @include kisko-grid-block(6);
+  }
+
+  input[type=email],
+  input[type=password] {
+    width: 438px;
+    font-size: 24px;
+  }
+
+  input[type=submit] {
+    width: 100px;
+  }
+
+  input[type=checkbox] {
+    width: auto;
+  }
 }

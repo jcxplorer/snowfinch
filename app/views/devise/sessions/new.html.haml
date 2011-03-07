@@ -1,9 +1,10 @@
 = header "Sign in"
 
-= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  = f.input :email
-  = f.input :password
-  = f.input :remember_me, :as => :boolean
-  = f.button :submit, "Sign in"
+#content
+  = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+    = f.input :email, :required => false
+    = f.input :password, :required => false
+    = f.input :remember_me, :as => :boolean
+    = f.button :submit, "Sign in"
 
-= render :partial => "devise/shared/links"
+  = render :partial => "devise/shared/links"
