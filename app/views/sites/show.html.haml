@@ -12,4 +12,14 @@
     %h2 Unique visitors today
     .value
 
-#chart{ :data => { :source => chart_site_path(@site, :format => :json ) } }
+#pageviews
+  %h2 Pageviews
+  #chart{ :data => { :source => chart_site_path(@site, :format => :json ) } }
+
+#page_finder
+  %h2 Find a page
+  %p Enter a URI and see the data for that page.
+
+  = form_for :page do |f|
+    = f.text_field :uri
+    = f.submit "View stats"
