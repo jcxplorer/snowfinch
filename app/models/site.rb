@@ -11,7 +11,7 @@ class Site < ActiveRecord::Base
   def counter_data
     {
       :pageviews_today => pageviews_today,
-      :active_visits => active_visits,
+      :active_visitors => active_visitors,
       :visitors_today => visitors_today
     }
   end
@@ -53,7 +53,7 @@ class Site < ActiveRecord::Base
     hash_lookup(site, month, day, "c") || 0
   end
 
-  def active_visits
+  def active_visitors
     min_heartbeat = Time.now.to_i - 15 * 60
     spec = { "s" => bson_id, "h" => { :$gt => min_heartbeat } }
     Mongo.db["visits"].find(spec).count

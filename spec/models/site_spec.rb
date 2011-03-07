@@ -43,7 +43,7 @@ describe Site do
       site.counter_data[:pageviews_today].should == 0
     end
 
-    it "contains the number of active visits" do
+    it "contains the number of active visitors" do
       visits = Mongo.db["visits"]
 
       visits.insert({
@@ -62,7 +62,7 @@ describe Site do
       })
 
       Timecop.freeze(Time.new(2011, 11, 11, 12))
-      site.counter_data[:active_visits].should == 2
+      site.counter_data[:active_visitors].should == 2
     end
 
     it "contains the number of unique visitors for the current day" do

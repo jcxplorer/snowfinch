@@ -2,13 +2,13 @@
   = link_to "Edit", edit_site_path(@site)
 
 #counters{ :data => { :source => counters_site_path(@site, :format => :json) } }
-  .counter{ :data => { :counter => "visits" } }
-    %h2 Active visits
+  .counter{ :data => { :counter => "active_visitors" } }
+    %h2 Active visitors
     .value
-  .counter{ :data => { :counter => "pageviews" } }
+  .counter{ :data => { :counter => "pageviews_today" } }
     %h2 Pageviews today
     .value
-  .counter{ :data => { :counter => "visitors" } }
+  .counter{ :data => { :counter => "visitors_today" } }
     %h2 Unique visitors today
     .value
 

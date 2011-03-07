@@ -1,12 +1,12 @@
 function updateSiteCounters() {
   $.getJSON($("#counters").data("source"), function(data) {
-    var visitsCounter = $(".counter[data-counter=visits] .value"),
-        pageviewsCounter = $(".counter[data-counter=pageviews] .value"),
-        visitorsCounter = $(".counter[data-counter=visitors] .value");
+    var activeVisitors = $(".counter[data-counter=active_visitors] .value"),
+        pageviewsToday = $(".counter[data-counter=pageviews_today] .value"),
+        visitorsToday = $(".counter[data-counter=visitors_today] .value");
 
-    visitsCounter.text(data.active_visits);
-    pageviewsCounter.text(data.pageviews_today);
-    visitorsCounter.text(data.visitors_today);
+    activeVisitors.text(data.active_visitors);
+    pageviewsToday.text(data.pageviews_today);
+    visitorsToday.text(data.visitors_today);
   });
 }
 
