@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: git@github.com:kiskolabs/kisko-compass.git
-  revision: 1e9935caf7cb74fbc912de08a44bfb15f07fd26b
+  revision: bd9fc531d8e435af0bc7cc9eeda0bfcae077df75
   specs:
     kisko-compass (0.1.1)
       compass

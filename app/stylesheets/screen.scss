@@ -10,11 +10,6 @@ a {
   color: #333;
 }
 
-body > header nav {
-  position: relative;
-  top: 26px;
-}
-
 .counter {
   @include kisko-grid-block(4);
   color: #666;
