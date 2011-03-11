@@ -11,6 +11,7 @@ describe Site do
   end
 
   it { should validate_presence_of(:name) }
+  it { should have_many(:sensors).dependent(:destroy) }
 
   describe "#time_zone_id" do
     it "returns the TZInfo indentifier" do
