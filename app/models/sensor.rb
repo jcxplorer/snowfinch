@@ -3,6 +3,8 @@ class Sensor < ActiveRecord::Base
   has_many :hosts, :class_name => "SensorHost"
   belongs_to :site
 
+  accepts_nested_attributes_for :hosts
+
   validates_presence_of :name, :site
   validates_presence_of :uri_query_key, :uri_query_value, :if => :query_based?
 

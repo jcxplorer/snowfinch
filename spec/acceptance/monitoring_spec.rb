@@ -32,7 +32,7 @@ feature "Monitoring" do
   scenario "Creating a query based sensor" do
     visit new_sensor_page(site)
     
-    within "#query_based" do
+    within "#query_sensor_form" do
       fill_in "Sensor name", :with => "Summer Discount"
       fill_in "URI query key", :with => "campaign"
       fill_in "URI query value", :with => "summer_discount"
@@ -47,18 +47,20 @@ feature "Monitoring" do
   scenario "Creating a host based sensor" do
     visit new_sensor_page(site)
 
-    within "#host_based" do
+    within "#host_sensor_form" do
       fill_in "Sensor name", :with => "Social Media"
       fill_in "Host", :with => "facebook.com"
-      click_link "Add another host"
+      click_link "Add"
       pending
     end
   end
 
-  scenario "Toggling between query and host based sensors during creation" do
+  scenario "Toggling between query and host creation forms", :js => true do
     visit new_sensor_page(site)
+    
+    page.should have_title("Add a sensor")
 
-    find("#query_based").should be_visible
+    find("#query_sensor_form").should be_visible
     pending
   end
 

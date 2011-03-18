@@ -48,4 +48,23 @@ jQuery(function() {
   if ($("#chart[data-source]").length) {
     createChart();
   }
+
+  $("#add_host_link").click(function(e) {
+    var li,
+        host = $("#add_host_field").val(),
+        ts   = new Date().getTime(),
+        input = $("<input/>", {
+          value: host,
+          type: "hidden",
+          name: "sensor[hosts_attributes][" + ts + "][host]"
+        });
+
+    if (host != "") {
+      li = $("<li/>").html(host);
+      li.appendTo("#sensor_hosts ul");
+      input.appendTo("#sensor_hosts");
+    }
+
+    e.preventDefault();
+  });
 });
