@@ -16,6 +16,7 @@ FactoryGirl.define do
 
   factory :sensor do
     name "Social Media"
+    site
   end
 
 end

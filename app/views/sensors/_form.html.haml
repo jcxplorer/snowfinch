@@ -1,0 +1,12 @@
+= simple_form_for [@site, @sensor], :html => { :id => "query_based" } do |f|
+  = f.input :name, :label => "Sensor name"
+  = f.input :uri_query_key, :label => "URI query key"
+  = f.input :uri_query_value, :label => "URI query value"
+  = f.button :submit, "Save"
+
+= simple_form_for [@site, @sensor], :html => { :id => "host_based" } do |f|
+  = f.input :name, :label => "Sensor name"
+  = f.simple_fields_for :hosts do |h|
+    = h.input :host
+    = link_to "Add another host"
+  = f.button :submit, "Save"

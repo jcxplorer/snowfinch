@@ -10,13 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110311114859) do
+ActiveRecord::Schema.define(:version => 20110316184425) do
+
+  create_table "sensor_hosts", :force => true do |t|
+    t.string  "host"
+    t.integer "sensor_id"
+  end
+
+  add_index "sensor_hosts", ["sensor_id"], :name => "index_sensor_hosts_on_sensor_id"
 
   create_table "sensors", :force => true do |t|
     t.string   "name"
     t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
+    t.string   "uri_query_key"
+    t.string   "uri_query_value"
   end
 
   add_index "sensors", ["site_id"], :name => "index_sensors_on_site_id"
