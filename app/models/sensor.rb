@@ -3,9 +3,12 @@ class Sensor < ActiveRecord::Base
   has_many :hosts, :class_name => "SensorHost"
   belongs_to :site
 
-  accepts_nested_attributes_for :hosts
+  accepts_nested_attributes_for :hosts, :reject_if => proc { |attributes|
+    attributes["host"].strip.empty?
+  }
+  validates_associated :hosts
 
-  validates_presence_of :name, :site
+  validates_presence_of :name, :site, :type
   validates_presence_of :uri_query_key, :uri_query_value, :if => :query_based?
 
   after_save :sync_with_mongodb
@@ -13,15 +16,33 @@ class Sensor < ActiveRecord::Base
 
   self.inheritance_column = nil
 
+  alias_method :hosts_attributes_with_duplicates=, :hosts_attributes=
+  def hosts_attributes=(attributes)
+    attributes.each do |key, attr|
+      attributes.delete(key) if attributes.select { |k,v| v == attr }.count > 1
+    end
+    self.hosts_attributes_with_duplicates = attributes
+  end
+
   private
 
   def sync_with_mongodb
     sensors = site.sensors.all.map do |sensor|
-      {
-        "type" => "query",
-        "key" => sensor.uri_query_key,
-        "value" => sensor.uri_query_value
-      }
+      case sensor.type
+      when "query"
+        {
+          "id" => sensor.id,
+          "type" => "query",
+          "key" => sensor.uri_query_key,
+          "value" => sensor.uri_query_value
+        }
+      when "host"
+        {
+          "id" => sensor.id,
+          "type" => "host",
+          "hosts" => sensor.hosts.all.map(&:host)
+        }
+      end
     end
 
     Mongo.db["sites"].update(

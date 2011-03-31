@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   respond_to :html
+
   navigation :users
 
   def index

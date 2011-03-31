@@ -1,4 +1,5 @@
-= header "Monitoring"
+= header "Monitoring" do
+  = link_to "Add a sensor", new_site_sensor_path(@site)
 
 #content
   - if @sensors.any?

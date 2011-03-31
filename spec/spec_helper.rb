@@ -7,13 +7,19 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
   config.mock_with :rspec
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   config.include EmailSpec::Helpers
   config.include EmailSpec::Matchers
 
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with :truncation
+  end
+
   config.before(:each) do
-    Capybara.current_driver = :akephalos if example.metadata[:js]
+    DatabaseCleaner.start
+    Capybara.current_driver = :selenium if example.metadata[:js]
     Capybara.reset_sessions!
 
     Mongo.db.collections.each do |collection|
@@ -24,5 +30,6 @@ RSpec.configure do |config|
   config.after(:each) do
     Timecop.return
     Capybara.use_default_driver if example.metadata[:js]
+    DatabaseCleaner.clean
   end
 end

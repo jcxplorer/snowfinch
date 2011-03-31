@@ -16,7 +16,13 @@ FactoryGirl.define do
 
   factory :sensor do
     name "Social Media"
+    type "host"
     site
+  end
+
+  factory :sensor_host do
+    host "google.com"
+    sensor
   end
 
 end

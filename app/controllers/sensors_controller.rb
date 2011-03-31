@@ -2,6 +2,8 @@ class SensorsController < ApplicationController
 
   respond_to :html
 
+  navigation :sites
+
   def index
     @site = Site.find(params[:site_id])
     @sensors = @site.sensors

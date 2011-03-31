@@ -1,3 +1,6 @@
-= header "Add a sensor"
+= header "Add a sensor" do
+  = link_to "Query based", nil, :id => "query_based_toggle", :class => "active"
+  = link_to "Host based", nil, :id => "host_based_toggle"
 
-= render "form"
+#content
+  = render "form"

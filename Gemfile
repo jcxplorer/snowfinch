@@ -7,22 +7,21 @@ gem "haml"
 gem "kisko-compass", :git => "git@github.com:kiskolabs/kisko-compass.git"
 gem "simple_form"
 gem "mongo"
-gem "bson_ext"
+gem "bson_ext" unless RUBY_PLATFORM == "java"
 gem "snowfinch-collector",
     :git => "git@github.com:jcxplorer/snowfinch-collector.git",
     :require => "snowfinch/collector"
 
 group :test do
-  gem "akephalos"
   gem "autotest", :require => false
   gem "autotest-growl", :require => false
   gem "capybara"
+  gem "database_cleaner"
   gem "email_spec"
   gem "factory_girl_rails", ">= 1.1.beta1"
   gem "fuubar"
   gem "launchy"
   gem "shoulda-matchers", :require => false
-  gem "spork", "~> 0.9.0.rc"
   gem "timecop"
 end
 
@@ -32,6 +31,6 @@ end
 
 group :development, :test do
   gem "rspec-rails"
-  gem "sqlite3-ruby", :require => "sqlite3"
+  gem "sqlite3-ruby", :require => "sqlite3" unless RUBY_PLATFORM == "java"
   gem "steak"
 end

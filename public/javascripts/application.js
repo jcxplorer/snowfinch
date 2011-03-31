@@ -49,7 +49,7 @@ jQuery(function() {
     createChart();
   }
 
-  $("#add_host_link").click(function(e) {
+  $("#add_host_link").click(function(event) {
     var li,
         host = $("#add_host_field").val(),
         ts   = new Date().getTime(),
@@ -63,8 +63,25 @@ jQuery(function() {
       li = $("<li/>").html(host);
       li.appendTo("#sensor_hosts ul");
       input.appendTo("#sensor_hosts");
+      $("#add_host_field").val("").focus();
     }
 
-    e.preventDefault();
+    event.preventDefault();
+  });
+
+  $("#query_based_toggle").click(function(event) {
+    $("#query_sensor_form").show();
+    $("#host_sensor_form").hide();
+    $(this).addClass("active");
+    $(this).siblings().removeClass("active");
+    event.preventDefault();
+  });
+
+  $("#host_based_toggle").click(function(event) {
+    $("#host_sensor_form").show();
+    $("#query_sensor_form").hide();
+    $(this).addClass("active");
+    $(this).siblings().removeClass("active");
+    event.preventDefault();
   });
 });
