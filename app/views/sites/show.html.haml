@@ -20,6 +20,6 @@
   %h2 Find a page
   %p Enter a URI and see the data for that page.
 
-  = form_for :page do |f|
+  = form_for :page, :url => find_pages_path do |f|
     = f.text_field :uri
     = f.submit "View stats"

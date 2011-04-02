@@ -13,6 +13,12 @@ Snowfinch::Application.routes.draw do
     resources :sensors
   end
 
+  resources :pages do
+    collection do
+      post :find
+    end
+  end
+
   resources :users
 
   root :to => "sites#index"
