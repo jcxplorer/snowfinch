@@ -1,8 +1,8 @@
 GIT
   remote: git@github.com:jcxplorer/snowfinch-collector.git
-  revision: 01537eed0ca1ba15dd9cda97411ac0ada24dbce7
+  revision: e9bfc1b6f25b80a5976499fbeefdefd8833ccabd
   specs:
-    snowfinch-collector (0.3.0)
+    snowfinch-collector (0.4.1)
       bson_ext
       mongo
       rack
@@ -107,7 +107,7 @@ GEM
     nokogiri (1.4.4)
     pg (0.10.1)
     polyglot (0.3.1)
-    rack (1.2.1)
+    rack (1.2.2)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
     rack-test (0.5.7)
@@ -162,7 +162,7 @@ GEM
     timecop (0.3.5)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
-    tzinfo (0.3.24)
+    tzinfo (0.3.26)
     warden (1.0.3)
       rack (>= 1.0.0)
     xpath (0.1.3)
