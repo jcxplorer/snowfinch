@@ -16,12 +16,13 @@ group :test do
   gem "autotest"
   gem "autotest-growl", :require => false
   gem "capybara"
-  gem "email_spec", :require => false
+  gem "database_cleaner"
+  gem "email_spec"
   gem "factory_girl_rails", ">= 1.1.beta1"
   gem "fuubar"
   gem "launchy"
   gem "shoulda-matchers", :require => false
-  gem "spork", "~> 0.9.0.rc"
+  gem "simplecov", :require => false
   gem "timecop"
 end
 
