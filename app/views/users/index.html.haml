@@ -2,4 +2,6 @@
   = link_to "Add a user", new_user_path
 
 #content
-  = list_for @users, :email
+  %ul.list
+    = list_of @users do |user|
+      = link_to user.email, user

@@ -2,14 +2,13 @@
 %html
   %head
     %title Snowfinch
-
     = stylesheet_link_tag "screen.css", :media => "screen, projection"
-
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body{ :id => body_id }
     %header
-      %a{ :href => "/" } Snowfinch
+      %h1
+        %a{ :href => "/" } Snowfinch
       - if user_signed_in?
         = navigation do
           = navigate_to :sites, "Sites", sites_path

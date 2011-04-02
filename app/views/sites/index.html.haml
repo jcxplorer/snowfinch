@@ -3,6 +3,8 @@
 
 #content
   - if @sites.any?
-    = list_for @sites, :name
+    %ul.list
+      = list_of @sites do |site|
+        = link_to site.name, site
   - else
     %p You don't have any sites. Click "Add a site" to create one.

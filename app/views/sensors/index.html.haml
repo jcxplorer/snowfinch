@@ -1,0 +1,9 @@
+= header "Monitoring"
+
+#content
+  - if @sensors.any?
+    %ul.list
+      = list_of @sensors do |sensor|
+        = link_to sensor.name, [@site, sensor]
+  - else
+    %p You don't have any sensors. Click "Add a sensor" to create one.

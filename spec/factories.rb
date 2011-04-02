@@ -14,4 +14,8 @@ FactoryGirl.define do
     time_zone "Helsinki"
   end
 
+  factory :sensor do
+    name "Social Media"
+  end
+
 end

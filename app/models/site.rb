@@ -1,5 +1,7 @@
 class Site < ActiveRecord::Base
 
+  has_many :sensors, :dependent => :destroy
+
   validates_presence_of :name, :time_zone
 
   before_create :create_mongo_site

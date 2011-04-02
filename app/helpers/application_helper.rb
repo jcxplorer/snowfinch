@@ -36,12 +36,4 @@ module ApplicationHelper
     "#{controller_name}_#{action_name}"
   end
 
-  def list_for(collection, attribute)
-    items = collection.map do |record|
-      content_tag(:li, link_to(record.send(attribute), record))
-    end
-
-    content_tag(:ul, items.join.html_safe, :class => "list")
-  end
-
 end

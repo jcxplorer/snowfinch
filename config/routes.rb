@@ -9,6 +9,8 @@ Snowfinch::Application.routes.draw do
       get :counters
       get :chart
     end
+
+    resources :sensors
   end
 
   resources :users
