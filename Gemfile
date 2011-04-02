@@ -22,6 +22,7 @@ group :test do
   gem "fuubar"
   gem "launchy"
   gem "shoulda-matchers", :require => false
+  gem "simplecov", :require => false
   gem "timecop"
 end
 
