@@ -1,5 +1,5 @@
 class Page
-  include ChartData
+  include TimeInTimeZone
   include HashLookupHelper
 
   delegate :time_zone, :to => :site
