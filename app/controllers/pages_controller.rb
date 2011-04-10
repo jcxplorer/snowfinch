@@ -2,6 +2,8 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render :not_found
   end
 
   def find
