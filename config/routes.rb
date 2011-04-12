@@ -17,6 +17,10 @@ Snowfinch::Application.routes.draw do
     collection do
       post :find
     end
+    member do
+      get :counters
+      get :chart
+    end
   end
 
   resources :users
