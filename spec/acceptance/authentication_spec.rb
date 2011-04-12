@@ -31,16 +31,6 @@ feature "Authentication" do
     page.should have_notice("Invalid email and/or password. Please try again.")
   end
 
-  scenario "Forgotten password" do
-    visit sign_in_page
-    click_link "Forgot your password?"
-
-    fill_in "Email", :with => "jason@snowfinch.net"
-    click_button "Send instructions"
-
-    page.should have_notice("Password reset instructions have been emailed.")
-  end
-
   scenario "Logging out" do
     sign_in :user
 
