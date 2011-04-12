@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Snowfinch::Application.config.secret_token = 'e221a6832a065df333d8c6dfcdade208de103c1b760b813e76bf60a70642170e7ea9f0c078471d92feaa78364c4ad5339e5a69bed70dda271db0a396f907a30f'
+Snowfinch::Application.config.secret_token = '099d9513241f6f77090b04905eb5438b44c297ae36a822a17e8f1d6eb41e7c2a64ff9fc2052c14757c031d97b457a01cfcbd35130bee66d3ddec0b58159674ab'
