@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:jcxplorer/snowfinch-collector.git
-  revision: 6e89c8d540b26fa1272e2732939f59bc13dd4f86
+  revision: 3bb78ca4396542818d68fce82382538bff39152f
   specs:
     snowfinch-collector (0.4.1)
       mongo
