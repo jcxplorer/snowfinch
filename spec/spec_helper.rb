@@ -29,6 +29,6 @@ RSpec.configure do |config|
   config.after(:each) do
     Timecop.return
     Capybara.use_default_driver if example.metadata[:js]
-    DatabaseCleaner.clean
   end
 end
+
