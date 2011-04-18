@@ -11,15 +11,15 @@ Snowfinch::Application.routes.draw do
     end
 
     resources :sensors
-  end
 
-  resources :pages do
-    collection do
-      post :find
-    end
-    member do
-      get :counters
-      get :chart
+    resources :pages do
+      collection do
+        post :find
+      end
+      member do
+        get :counters
+        get :chart
+      end
     end
   end
 

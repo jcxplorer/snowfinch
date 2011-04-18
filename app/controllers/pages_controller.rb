@@ -12,7 +12,7 @@ class PagesController < ApplicationController
     uri = Snowfinch::Collector.sanitize_uri(params[:page][:uri])
     uri_hash = Snowfinch::Collector.hash_uri(uri)
 
-    redirect_to page_path(uri_hash)
+    redirect_to site_page_path(site, uri_hash)
   end
 
   def counters
@@ -26,7 +26,11 @@ class PagesController < ApplicationController
   private
 
   def page
-    @page ||= Page.find(params[:id])
+    @page ||= Page.find(site, params[:id])
+  end
+
+  def site
+    @site ||= Site.find(params[:site_id])
   end
 
 end

@@ -5,8 +5,10 @@ class Page
   delegate :time_zone, :to => :site
   delegate :[], :to => :@document
 
-  def self.find(hash, year=Date.today.year)
-    if document = Mongo.db["page_counts"].find_one(:h => hash)
+  def self.find(site, hash, year=Date.today.year)
+    document = Mongo.db["page_counts"].find_one(:h => hash, :s => site.bson_id)
+
+    if document
       new(document)
     else
       raise ActiveRecord::RecordNotFound
