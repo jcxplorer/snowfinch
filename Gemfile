@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "rails", "3.0.5"
+gem "rails", "3.0.6"
 
 gem "devise"
 gem "haml"
@@ -22,6 +22,7 @@ group :test do
   gem "fuubar"
   gem "launchy"
   gem "shoulda-matchers", :require => false
+  gem "simplecov", :require => false
   gem "timecop"
 end
 

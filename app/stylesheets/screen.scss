@@ -14,6 +14,10 @@ a {
   @include kisko-grid-block(4);
   color: #666;
 
+  h2 {
+    font-size: 13px;
+  }
+
   .value {
     @include text-shadow; 
     font-size: 36px;
@@ -22,9 +26,30 @@ a {
   }
 }
 
+h2 {
+  font-size: 24px;
+  color: #666;
+}
+
+#pageviews, #page_finder {
+  @include kisko-grid-block(12);
+}
+
 #chart {
   height: 300px;
-  @include kisko-grid-block(12);
+}
+
+input#page_uri {
+  width: 769px;
+  font-size: 16px;
+  padding: 8px 10px;
+}
+
+input#page_submit {
+  width: 140px;
+  height: 37px;
+  margin-left: 5px;
+  margin-top: 1px;
 }
 
 #sessions_new {

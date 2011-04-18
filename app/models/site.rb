@@ -1,4 +1,6 @@
 class Site < ActiveRecord::Base
+  include TimeInTimeZone
+  include HashLookupHelper
 
   has_many :sensors, :dependent => :destroy
 
@@ -41,12 +43,21 @@ class Site < ActiveRecord::Base
     Mongo.db["sites"].remove("_id" => bson_id)
   end
 
-  def today
-    time_now.to_date
-  end
+  def chart_pageviews_for_date(date)
+    month = date.mon.to_s
+    day   = date.day.to_s
 
-  def time_now
-    Time.now.in_time_zone(time_zone)
+    site = Mongo.db["site_counts"].find_one(
+      { "s" => bson_id, "y" => date.year },
+      { :fields => ["#{month}.#{day}"] }
+    )
+
+    hours = date == today ? time_now.hour + 1 : 24
+
+    hours.times.map do |hour|
+      count = hash_lookup(site, month, day, hour.to_s, "c") || 0
+      [hour, count]
+    end
   end
 
   def pageviews_today
@@ -70,31 +81,4 @@ class Site < ActiveRecord::Base
   def visitors_today
     Mongo.db["visitors"].find("s" => bson_id, "d" => today.to_s).count
   end
-
-  def chart_pageviews_for_date(date)
-    month = date.mon.to_s
-    day   = date.day.to_s
-
-    site = Mongo.db["site_counts"].find_one(
-      { "s" => bson_id, "y" => date.year },
-      { :fields => ["#{month}.#{day}"] }
-    )
-
-    hours = date == today ? time_now.hour + 1 : 24
-
-    hours.times.map do |hour|
-      count = hash_lookup(site, month, day, hour.to_s, "c") || 0
-      [hour, count]
-    end
-  end
-
-  def hash_lookup(hash, *keys)
-    last_value = hash
-    keys.each do |key|
-      return unless last_value
-      last_value = last_value[key]
-    end
-    last_value
-  end
-
 end

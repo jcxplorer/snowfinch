@@ -6,6 +6,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.rememberable
       t.trackable
       t.lockable :lock_strategy => :failed_attempts, :unlock_strategy => :both
+      t.encryptable
 
       t.timestamps
     end

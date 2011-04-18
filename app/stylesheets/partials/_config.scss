@@ -20,18 +20,22 @@
 
 // dimensions
 $grid_width: 940px;
+$gutter: 20px;
 $grid_columns: 12;
-$gutter: 40px;
-$baseline: 18px;
 
-$columnwidth: ($grid_width - (($grid_columns - 1) * $gutter)) / $grid_columns;
+// plain values for the griddle.it
+$_grid_width: 940;
+$_gutter: 20;
+
+// typography
+$baseline: 18px;
 
 // box config
 $boxborderwidth: 1px;
 $boxpadding_vertical: $baseline - $boxborderwidth; // padding is equal to lineheight minus the top & bottom borders
 $boxpadding_horizontal: 10px;
 
-// images
-$linkcolor: red;
-
 // END CONFIG
+
+// calculated values
+$columnwidth: ($grid_width - (($grid_columns - 1) * $gutter)) / $grid_columns;

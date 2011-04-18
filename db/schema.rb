@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110316184425) do
+ActiveRecord::Schema.define(:version => 20110410155204) do
 
   create_table "sensor_hosts", :force => true do |t|
     t.string  "host"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20110316184425) do
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
