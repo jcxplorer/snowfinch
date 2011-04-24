@@ -1,2 +1,13 @@
 = header truncate(@page.uri, :length => 80)
 
+#counters{ :data => { :source => counters_site_page_path(@site, @page, :format => :json) } }
+  .counter{ :data => { :counter => "active_visitors" } }
+    %h2 Active visitors
+    .value
+  .counter{ :data => { :counter => "pageviews_today" } }
+    %h2 Pageviews today
+    .value
+
+#pageviews
+  %h2 Pageviews
+  #chart{ :data => { :source => chart_site_page_path(@site, @page, :format => :json ) } }
