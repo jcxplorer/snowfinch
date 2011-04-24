@@ -31,6 +31,10 @@ class Site < ActiveRecord::Base
     BSON::ObjectId(token)
   end
 
+  def tracked?
+    Mongo.db["site_counts"].find("s" => bson_id).any?
+  end
+
   private
 
   def create_mongo_site

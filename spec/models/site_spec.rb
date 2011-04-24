@@ -116,4 +116,16 @@ describe Site do
     end
   end
 
+  describe "#tracked?" do
+    it "is true when there are no registered clicks" do
+      site_counts.find("s" => site.bson_id).count.should == 0
+      site.should_not be_tracked
+    end
+
+    it "is false when there are registered clicks" do
+      site_counts.insert("s" => site.bson_id, "y" => 2011, "c" => 1)
+      site.should be_tracked
+    end
+  end
+
 end

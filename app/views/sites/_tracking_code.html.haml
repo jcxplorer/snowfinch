@@ -1,0 +1,13 @@
+%pre
+  :preserve
+    &lt;script&gt;
+      var snowfinch = snowfinch || {};
+      snowfinch.collector = "#{Snowfinch.configuration[:collector_uri]}";
+      snowfinch.token = "#{@site.token}";
+     
+      (function() {
+        var sf = document.createElement("script"), script = document.getElementsByTagName("script")[0];
+        sf.type = "text/javascript"; sf.async = true; sf.src = "http://#{Snowfinch.configuration[:host]}/tracker.js";
+        script.parentNode.insertBefore(sf, script);
+      })();
+    &lt;/script&gt;
