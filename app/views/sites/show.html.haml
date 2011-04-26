@@ -2,25 +2,34 @@
   = link_to "Monitoring", site_sensors_path(@site)
   = link_to "Edit", edit_site_path(@site)
 
-#counters{ :data => { :source => counters_site_path(@site, :format => :json) } }
-  .counter{ :data => { :counter => "active_visitors" } }
-    %h2 Active visitors
-    .value
-  .counter{ :data => { :counter => "pageviews_today" } }
-    %h2 Pageviews today
-    .value
-  .counter{ :data => { :counter => "visitors_today" } }
-    %h2 Unique visitors today
-    .value
+- if @site.tracked?
+  #counters{ :data => { :source => counters_site_path(@site, :format => :json) } }
+    .counter{ :data => { :counter => "active_visitors" } }
+      %h2 Active visitors
+      .value
+    .counter{ :data => { :counter => "pageviews_today" } }
+      %h2 Pageviews today
+      .value
+    .counter{ :data => { :counter => "visitors_today" } }
+      %h2 Unique visitors today
+      .value
 
-#pageviews
-  %h2 Pageviews
-  #chart{ :data => { :source => chart_site_path(@site, :format => :json ) } }
+  #pageviews
+    %h2 Pageviews
+    #chart{ :data => { :source => chart_site_path(@site, :format => :json ) } }
 
-#page_finder
-  %h2 Find a page
-  %p Enter a URI and see the data for that page.
+  #page_finder
+    %h2 Find a page
+    %p Enter a URI and see the data for that page.
 
-  = form_for :page, :url => find_pages_path do |f|
-    = f.text_field :uri
-    = f.submit "View stats"
+    = form_for :page, :url => find_site_pages_path(@site) do |f|
+      = f.text_field :uri
+      = f.submit "View stats"
+
+- else
+  %p
+    To start tracking, you must add the following code to your site,
+    before &lt;/body&gt;.
+    Once tracking starts this message will disappear.
+
+  = render "tracking_code"

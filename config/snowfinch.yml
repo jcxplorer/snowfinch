@@ -1,14 +1,17 @@
 development:
   host: "snowfinch.rails.fi:3000"
+  collector_uri: "http://snowfinch.rails.fi:3000/collector"
   mailer_sender: "support@snowfinch.net"
   mongo_database: "snowfinch"
 
 test:
   host: "snowfinch.rails.fi:3000"
+  collector_uri: "http://snowfinch.rails.fi:3000/collector"
   mailer_sender: "support@snowfinch.net"
   mongo_database: "snowfinch_test"
 
 production:
   host: "nest.snowfinch.net"
+  collector_uri: "http://nest.snowfinch.net/collector"
   mailer_sender: "support@snowfinch.net"
   mongo_database: "snowfinch"
