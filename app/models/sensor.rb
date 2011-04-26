@@ -36,10 +36,10 @@ class Sensor < ActiveRecord::Base
           "key" => sensor.uri_query_key,
           "value" => sensor.uri_query_value
         }
-      when "host"
+      when "referrer"
         {
           "id" => sensor.id,
-          "type" => "host",
+          "type" => "referrer",
           "hosts" => sensor.hosts.all.map(&:host)
         }
       end

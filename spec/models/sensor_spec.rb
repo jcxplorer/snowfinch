@@ -28,7 +28,7 @@ describe Sensor do
   let :social_media do
     sensor = Factory :sensor,
                      :site => site,
-                     :type => "host"
+                     :type => "referrer"
     Factory(:sensor_host, :host => "facebook.com", :sensor => sensor)
     Factory(:sensor_host, :host => "twitter.com", :sensor => sensor)
     sensor
@@ -64,7 +64,7 @@ describe Sensor do
       sensors.count.should == 3
       sensors.should include({
         "id" => social_media.id,
-        "type" => "host",
+        "type" => "referrer",
         "hosts" => ["facebook.com", "twitter.com"]
       })
 

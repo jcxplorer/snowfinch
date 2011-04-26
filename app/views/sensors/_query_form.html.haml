@@ -1,0 +1,6 @@
+= simple_form_for [@site, @sensor], :html => { :id => "query_sensor_form" } do |f|
+  = f.hidden_field :type, :value => "query"
+  = f.input :name, :label => "Sensor name"
+  = f.input :uri_query_key, :label => "URI query key"
+  = f.input :uri_query_value, :label => "URI query value"
+  = f.button :submit, "Save"

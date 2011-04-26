@@ -57,31 +57,44 @@ jQuery(function() {
           value: host,
           type: "hidden",
           name: "sensor[hosts_attributes][" + ts + "][host]"
-        });
+        }),
+        removeLink = $("<a/>", { href: "#" }).
+          addClass("remove").
+          html("[x]");
 
     if (host != "") {
       li = $("<li/>").html(host);
+      removeLink.appendTo(li);
       li.appendTo("#sensor_hosts ul");
-      input.appendTo("#sensor_hosts");
+      input.appendTo(li);
       $("#add_host_field").val("").focus();
     }
 
     event.preventDefault();
   });
 
+  if ($("#query_sensor_form").length + $("#referrer_sensor_form").length > 1) {
+    $("#referrer_sensor_form").hide();
+  }
+
   $("#query_based_toggle").click(function(event) {
     $("#query_sensor_form").show();
-    $("#host_sensor_form").hide();
+    $("#referrer_sensor_form").hide();
     $(this).addClass("active");
     $(this).siblings().removeClass("active");
     event.preventDefault();
   });
 
-  $("#host_based_toggle").click(function(event) {
-    $("#host_sensor_form").show();
+  $("#referrer_based_toggle").click(function(event) {
+    $("#referrer_sensor_form").show();
     $("#query_sensor_form").hide();
     $(this).addClass("active");
     $(this).siblings().removeClass("active");
+    event.preventDefault();
+  });
+
+  $("#sensor_hosts ul a.remove").live("click", function(event) {
+    $(this).parent().remove();
     event.preventDefault();
   });
 });

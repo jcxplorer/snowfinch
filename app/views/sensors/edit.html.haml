@@ -1,0 +1,7 @@
+= header @sensor.name
+
+- case @sensor.type
+- when "query"
+  = render "query_form"
+- when "referrer"
+  = render "referrer_form"

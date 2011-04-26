@@ -7,7 +7,7 @@ gem "haml"
 gem "kisko-compass", :git => "git@github.com:kiskolabs/kisko-compass.git"
 gem "simple_form"
 gem "mongo"
-gem "bson_ext" unless RUBY_PLATFORM == "java"
+gem "bson_ext"
 gem "snowfinch-collector",
     :git => "git@github.com:jcxplorer/snowfinch-collector.git",
     :require => "snowfinch/collector"
@@ -32,6 +32,6 @@ end
 
 group :development, :test do
   gem "rspec-rails"
-  gem "sqlite3-ruby", :require => "sqlite3" unless RUBY_PLATFORM == "java"
+  gem "sqlite3-ruby"
   gem "steak"
 end

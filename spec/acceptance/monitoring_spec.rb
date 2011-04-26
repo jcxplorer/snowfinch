@@ -53,13 +53,13 @@ feature "Monitoring" do
   scenario "Creating a host based sensor", :js => true do
     visit new_sensor_page(site)
 
-    click_link "Host based"
+    click_link "Referrer based"
 
-    within "#host_sensor_form" do
+    within "#referrer_sensor_form" do
       fill_in "Sensor name", :with => "Social Media"
-      fill_in "Host", :with => "facebook.com"
+      fill_in "Referrer host", :with => "facebook.com"
       click_link "Add"
-      fill_in "Host", :with => "twitter.com"
+      fill_in "Referrer host", :with => "twitter.com"
       click_link "Add"
       click_button "Save"
     end
@@ -81,29 +81,50 @@ feature "Monitoring" do
     page.should have_title("Add a sensor")
 
     find("#query_sensor_form").should be_visible
-    find("#host_sensor_form").should_not be_visible
+    find("#referrer_sensor_form").should_not be_visible
     page.should have_css("#query_based_toggle.active")
-    page.should_not have_css("#host_based_toggle.active")
+    page.should_not have_css("#referrer_based_toggle.active")
 
-    click_link "Host based"
+    click_link "Referrer based"
     find("#query_sensor_form").should_not be_visible
-    find("#host_sensor_form").should be_visible
+    find("#referrer_sensor_form").should be_visible
     page.should_not have_css("#query_based_toggle.active")
-    page.should have_css("#host_based_toggle.active")
+    page.should have_css("#referrer_based_toggle.active")
 
     click_link "Query based"
     find("#query_sensor_form").should be_visible
-    find("#host_sensor_form").should_not be_visible
+    find("#referrer_sensor_form").should_not be_visible
     page.should have_css("#query_based_toggle.active")
-    page.should_not have_css("#host_based_toggle.active")
+    page.should_not have_css("#referrer_based_toggle.active")
   end
 
   scenario "Viewing a sensor" do
-    pending
+    sensor = Factory :sensor, :name => "SoMe", :site => site
+    
+    visit sensor_page(sensor)
+
+    page.should have_title("SoMe")
+    page.should have_active_navigation("Sites")
   end
 
   scenario "Editing a query based sensor" do
-    pending
+    sensor = Factory :sensor,
+                     :name => "FR10",
+                     :type => "query",
+                     :uri_query_key => "campaign",
+                     :uri_query_value => "fr10",
+                     :site => site
+
+    visit sensor_page(sensor)
+    click_link "Edit"
+
+    fill_in "Sensor name", :with => "FR11"
+    fill_in "URI query value", :with => "fr11"
+    click_button "Save"
+
+    page.should have_notice(%{"FR11" has been updated.})
+    current_path.should == sensor_page(sensor)
+    page.should have_title("FR11")
   end
 
   scenario "Editing a host based sensor" do
