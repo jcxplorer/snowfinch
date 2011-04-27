@@ -50,25 +50,25 @@ jQuery(function() {
   }
 
   $("#add_host_link").click(function(event) {
-    var li,
-        host = $("#add_host_field").val(),
-        ts   = new Date().getTime(),
+    var div = $("<div/>").addClass("referrer"),
+        ts = new Date().getTime(),
+        label = $("<label/>", {
+                  for: "sensor_hosts_attributes_" + ts + "_host"
+                }).html("Referrer host"),
         input = $("<input/>", {
-          value: host,
-          type: "hidden",
-          name: "sensor[hosts_attributes][" + ts + "][host]"
-        }),
-        removeLink = $("<a/>", { href: "#" }).
-          addClass("remove").
-          html("[x]");
+                  id: "sensor_hosts_attributes_" + ts + "_host",
+                  maxlength: 255,
+                  name: "sensor[hosts_attributes][" + ts + "][host]",
+                  size: 50,
+                  type: "text"
+                }),
+        remove = $('<a href="#" class="remove">[x]<a/>');
 
-    if (host != "") {
-      li = $("<li/>").html(host);
-      removeLink.appendTo(li);
-      li.appendTo("#sensor_hosts ul");
-      input.appendTo(li);
-      $("#add_host_field").val("").focus();
-    }
+    label.appendTo(div);
+    input.appendTo(div);
+    remove.appendTo(div);
+
+    div.appendTo("#sensor_referrers");
 
     event.preventDefault();
   });
@@ -93,7 +93,7 @@ jQuery(function() {
     event.preventDefault();
   });
 
-  $("#sensor_hosts ul a.remove").live("click", function(event) {
+  $("#sensor_referrers .referrer a.remove").live("click", function(event) {
     $(this).parent().remove();
     event.preventDefault();
   });

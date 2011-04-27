@@ -50,17 +50,28 @@ feature "Monitoring" do
     current_path.should == sensor_page(Sensor.last)
   end
 
-  scenario "Creating a host based sensor", :js => true do
+  scenario "Creating a referrer based sensor", :js => true do
     visit new_sensor_page(site)
 
     click_link "Referrer based"
 
     within "#referrer_sensor_form" do
       fill_in "Sensor name", :with => "Social Media"
+
+      click_link "Add a referrer"
       fill_in "Referrer host", :with => "facebook.com"
-      click_link "Add"
-      fill_in "Referrer host", :with => "twitter.com"
-      click_link "Add"
+
+      click_link "Add a referrer"
+      within(".referrer:last") do
+        fill_in "Referrer host", :with => "twitter.com"
+      end
+
+      click_link "Add a referrer"
+      within(".referrer:last") do
+        fill_in "Referrer host", :with => "snowfinch.net"
+        click_link "[x]"
+      end
+
       click_button "Save"
     end
 
@@ -75,7 +86,7 @@ feature "Monitoring" do
     Sensor.last.hosts.where(:host => "twitter.com").count.should == 1
   end
 
-  scenario "Toggling between query and host creation forms", :js => true do
+  scenario "Toggling between query and referrer creation forms", :js => true do
     visit new_sensor_page(site)
     
     page.should have_title("Add a sensor")
@@ -115,7 +126,7 @@ feature "Monitoring" do
                      :uri_query_value => "fr10",
                      :site => site
 
-    visit sensor_page(sensor)
+  visit sensor_page(sensor)
     click_link "Edit"
 
     fill_in "Sensor name", :with => "FR11"
@@ -127,12 +138,52 @@ feature "Monitoring" do
     page.should have_title("FR11")
   end
 
-  scenario "Editing a host based sensor" do
-    pending
+  scenario "Editing a referrer based sensor", :js => true do
+    sensor = Factory :sensor,
+                     :name => "SoMe",
+                     :type => "referrer",
+                     :site => site
+    host_1 = Factory :sensor_host, :host => "facebook.co", :sensor => sensor
+    host_2 = Factory :sensor_host, :host => "twitter.com", :sensor => sensor
+    host_3 = Factory :sensor_host, :host => "myspace.com", :sensor => sensor
+
+    visit sensor_page(sensor)
+    click_link "Edit"
+
+    fill_in "Sensor name", :with => "Social Media"
+
+    within :xpath, "//div[@class='referrer'][1]" do
+      fill_in "Referrer host", :with => "facebook.com"
+    end
+
+    within :xpath, "//div[@class='referrer'][3]" do
+      check "remove"
+    end
+
+    click_link "Add a referrer"
+    within :xpath, "//div[@class='referrer'][4]" do
+      fill_in "Referrer host", :with => "jaiku.com"
+    end
+
+    click_button "Save"
+
+    page.should have_title("Social Media")
+    page.should have_notice('"Social Media" has been updated.')
+
+    sensor.hosts.count.should == 3
+    sensor.hosts.where(:host => "facebook.com").count.should == 1
+    sensor.hosts.where(:host => "twitter.com").count.should == 1
+    sensor.hosts.where(:host => "jaiku.com").count.should == 1
   end
 
   scenario "Removing a sensor" do
-    pending
+    sensor = Factory :sensor, :name => "Google", :site => site
+
+    visit edit_sensor_page(sensor)
+    click_button "Remove this sensor"
+    
+    page.should have_notice('"Google" has been removed.')
+    current_path.should == sensors_page(site)
   end
 
 end

@@ -5,3 +5,6 @@
   = render "query_form"
 - when "referrer"
   = render "referrer_form"
+
+= button_to "Remove this sensor", [@site, @sensor], :method => :delete,
+            :confirm => "Are you sure? There is no going back!"

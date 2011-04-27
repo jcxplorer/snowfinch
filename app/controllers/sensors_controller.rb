@@ -10,8 +10,7 @@ class SensorsController < ApplicationController
   end
 
   def show
-    @sensor = site.sensors.find(params[:id])
-    respond_with @sensor
+    respond_with sensor
   end
 
   def new
@@ -27,19 +26,28 @@ class SensorsController < ApplicationController
   end
 
   def edit
-    @sensor = site.sensors.find(params[:id])
-    respond_with @sensor
+    respond_with sensor
   end
 
   def update
-    @sensor = site.sensors.find(params[:id])
-    if @sensor.update_attributes(params[:sensor])
-      flash.notice = %{"#{@sensor.name}" has been updated.}
+    if sensor.update_attributes(params[:sensor])
+      flash.notice = %{"#{sensor.name}" has been updated.}
     end
-    respond_with [site, @sensor]
+    respond_with [site, sensor]
+  end
+
+  def destroy
+    if sensor.destroy
+      flash.notice = %{"#{sensor.name}" has been removed.}
+    end
+    respond_with [site, sensor]
   end
 
   private
+
+  def sensor
+    @sensor ||= site.sensors.find(params[:id])
+  end
 
   def site
     @site ||= Site.find(params[:site_id])

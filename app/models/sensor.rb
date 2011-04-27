@@ -3,9 +3,10 @@ class Sensor < ActiveRecord::Base
   has_many :hosts, :class_name => "SensorHost"
   belongs_to :site
 
-  accepts_nested_attributes_for :hosts, :reject_if => proc { |attributes|
-    attributes["host"].strip.empty?
-  }
+  accepts_nested_attributes_for :hosts,
+    :allow_destroy => true,
+    :reject_if => proc { |attributes| attributes["host"].strip.empty? }
+
   validates_associated :hosts
 
   validates_presence_of :name, :site, :type
