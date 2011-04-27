@@ -1,0 +1,9 @@
+= header "Account"
+
+#content
+  = simple_form_for @user, :url => account_path do |f|
+    = f.input :email, :required => false
+    = f.input :password, :required => false
+    = f.input :password_confirmation, :required => false
+    = f.input :current_password, :required => true
+    = f.button :submit, "Save"

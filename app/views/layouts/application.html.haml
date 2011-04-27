@@ -13,6 +13,7 @@
         = navigation do
           = navigate_to :sites, "Sites", sites_path
           = navigate_to :users, "Users", users_path
+          = navigate_to :account, "Account", edit_account_path
           %li= link_to "Sign out", destroy_user_session_path
     - if notice
       #flash.notice= notice

@@ -24,6 +24,7 @@ Snowfinch::Application.routes.draw do
   end
 
   resources :users
+  resource :account
 
   root :to => "sites#index"
 
