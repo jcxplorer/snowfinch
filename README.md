@@ -40,8 +40,12 @@ production, as it won't hold much data or be accessed often.
 Install the application dependencies by running `bundle` in the 
 application directory.
 
+Run `rake db:setup` to create a database and an initial user.
+
 You are now ready to launch the application using your favorite Ruby 
-application server such as Passenger or Unicorn.
+application server such as Passenger or Unicorn. Sign in with the email 
+address _user@snowfinch.net_ and password _snowfinch_. Don't forget to 
+change those credentials on your account page!
 
 
 High performance and scaling
