@@ -1,0 +1,16 @@
+.wrapper {
+  width: $grid_width + $gutter;
+  line-height:1.5;
+  font-size: 16px;
+  margin: 0 auto;
+  position: relative;
+  @include pie-clearfix;
+  &.grid {
+    background: url('http://griddle.it/#{$_grid_width}-#{$grid_columns}-#{$_gutter}') repeat-y center;
+  }
+}
+
+.column {
+  float: left;
+  margin: ($gutter / 2);
+}

@@ -1,3 +1,49 @@
-@include kisko-grid;
-@include sensible-defaults; 
-@include kisko-scaffolds; // comment out if you don't want the scaffold look
+@mixin grid {
+  .wrapper {
+    width: $grid_width + $gutter;
+    line-height:1.5;
+    font-size: 16px;
+    margin: 0 auto;
+    position: relative;
+    @include pie-clearfix;
+		&.grid {
+			background: url('http://griddle.it/#{$_grid_width}-#{$grid_columns}-#{$_gutter}') repeat-y center;
+		}
+	}
+
+  .column {
+    float: left;
+    margin: ($gutter / 2);
+  }
+}
+
+@mixin grid-block($cols) {
+  width: ($columnwidth * $cols + (($cols - 1) * $gutter));
+  @extend .column;
+}
+
+@mixin button($text_color, $start_color, $end_color, $border_color) {
+  @include border-radius(5px);
+  @include linear-gradient(color-stops($start_color, $end_color));
+  border: 1px solid $border_color;
+  color: $text_color;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: bold;
+  height: 31px;
+  line-height: 31px;
+  padding: 0 14px;
+  text-decoration: none;
+}
+
+@mixin flash {
+  @include opacity(0.8);
+  border-top: 1px solid #555;
+  color: #fff;
+  font-weight: bold;
+  line-height: 22px;
+  margin-bottom: 20px;
+  margin-top: -40px;
+  right: 0;
+  text-align: center;
+}

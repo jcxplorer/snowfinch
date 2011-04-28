@@ -1,9 +1,245 @@
-@import "kisko"; // imported from kisko-compass gem
-@import "partials/config"; // first load the congig scss with variables
-@import "partials/mixins"; // load required mixins
+@import "compass/css3";
+@import "compass/utilities";
+@import "partials/reset";
+@import "partials/config";
+@import "partials/grid";
+@import "partials/mixins";
+
+html {
+  background: image_url("template-bg.png");
+}
+
+body {
+  font-family: 'Helvetica Neue',Arial;
+}
+
+body > header {
+  @include pie-clearfix;
+  @include linear-gradient(color-stops(#444, #222));
+  width: 100%;
+  margin-bottom: 40px;
+  padding: 20px 0;
+  border-bottom: 1px solid #111;
+
+  h1 {
+    @extend .wrapper
+  }
+
+  h1 > a:link,
+  h1 > a:visited {
+    color: #fff;
+    text-decoration: none;
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  nav {
+    @extend .wrapper;
+    margin-top:-32px;
+  }
+
+  nav ul {
+    list-style: none;
+    float: right;
+    @include border-radius(5px);
+    @include linear-gradient(color-stops(#212121, #191919));
+    border: 1px solid #212121;
+    padding: 2px 4px;
+
+    li {
+      display: inline;
+
+      a:link,
+      a:visited {
+        padding: 0 ($gutter / 2);
+        line-height: 33px;
+        font-weight: bold;
+        color: #fff;
+        font-size: 14px;
+        text-decoration: none;
+        padding: 5px 10px;
+        border: 1px solid transparent;
+      }
+
+      a:hover,
+      a.active {
+        @include border-radius(5px);
+        @include linear-gradient(color-stops(#fff, #aaa));
+        border: 1px solid #333;
+        color: #111;
+        @include background-clip(padding-box);
+      }
+    }
+  }
+}
 
 #content {
-  @include kisko-grid-block($grid_columns);
+  @include grid-block($grid_columns);
+}
+
+#container {
+  @extend .wrapper;
+  @include border-radius(5px);
+  @include box-shadow(#888, 0, 4px, 9px);
+  background-color: #fff;
+  border: 1px solid #e7e7e7;
+}
+
+#container header {
+  @include linear-gradient(color-stops(#f4f4f4, #ededed));
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #ddd;
+  height: 60px;
+
+  h1 {
+    padding: 0;
+    line-height: 60px;
+    margin-left: ($gutter / 2);
+    font-size: 23px;
+    font-weight: bold;
+    color: #474747;
+    display: inline;
+  }
+
+  > span {
+    float: right;
+    margin-right: ($gutter / 2);
+  }
+
+  a:first-child {
+    margin-left: 20px;
+  }
+
+  a:link,
+  a:visited {
+    @include button(#474747, #f1f1f1, #e0e0e0, #c6c6c6);
+    margin-top: 12px;
+  }
+
+  a:hover,
+  a.active {
+    @include button(#fff, #18b0ff, #079fed, #059cea);
+  }
+}
+
+footer {
+  text-align: center;
+  padding-bottom: 15px;
+  margin-top: 30px;
+  color: #666;
+  a:link, a:visited {
+    color: #666;
+    padding: 0 5px;
+  }
+}
+
+ol, ul {
+  list-style-position: inside;
+}
+
+h1 {font-size: 3em;}
+h2 {font-size: 2.5em;}
+h3 {font-size: 2em;}
+h4 {font-size: 1.5em;}
+
+p {margin-bottom: $baseline;}
+
+form {
+  input[type="submit"], input[type="button"], input[type="reset"], button {
+    @include button(#474747, #f1f1f1, #e0e0e0, #c6c6c6);
+    cursor: pointer;
+    line-height: 28px;
+  }
+
+  input[type="submit"]:hover,
+  input[type="button"]:hover,
+  input[type="reset"]:hover,
+  button:hover {
+    @include button(#fff, #18b0ff, #079fed, #059cea);
+  }
+
+  label,
+  div.field_with_errors span.error, div.input span.hint {
+    display: block;
+  }
+  
+  div.field_with_errors span.error {
+    background: #D10933;
+    color: #fff;
+    padding: 5px;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+  
+  label.boolean {
+    display: inline;
+  }
+  
+  label.collection_check_boxes,
+  label.collection_radio {
+    font-weight: normal;
+  }
+
+  div.input {
+    margin-bottom: 20px;
+  }
+  
+  input, textarea {
+    border: 1px solid  #bbb;
+    padding: 5px;
+    &:focus {
+      border: 1px solid #666; }
+  }
+}
+
+ul.list {
+  li {
+    list-style: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #474747;
+    line-height: 70px;
+    margin: 0;
+    border-bottom: 1px solid #f4f4f4;
+
+    > span {
+      display: inline-block;
+      float: right;
+      font-size: 12px;
+      visibility: hidden;
+
+      a {
+        @include border-radius(5px);
+        display: inline-block;
+        margin-left: 10px;
+        line-height: 24px;
+        padding: 0 10px;
+        color: #fff;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+#flash.notice {
+  @extend flash;
+  background: #00cc00;
+}
+
+#flash.alert {
+  @extend flash;
+  background: #f81315;
+}
+
+table th {
+  @include linear-gradient(color-stops(#f4f4f4, #ededed));
+}
+
+#content {
+  @include grid-block($grid_columns);
 }
 
 a {
@@ -11,7 +247,7 @@ a {
 }
 
 .counter {
-  @include kisko-grid-block(4);
+  @include grid-block(4);
   color: #666;
 
   h2 {
@@ -32,7 +268,7 @@ h2 {
 }
 
 #pageviews, #page_finder, #entries {
-  @include kisko-grid-block(12);
+  @include grid-block(12);
 }
 
 #chart {
@@ -58,7 +294,7 @@ input#page_submit {
   }
 
   #content {
-    @include kisko-grid-block(6);
+    @include grid-block(6);
   }
 
   input[type=email],

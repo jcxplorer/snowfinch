@@ -4,7 +4,6 @@ gem "rails", "3.0.7"
 
 gem "devise"
 gem "haml"
-gem "kisko-compass", :git => "git@github.com:kiskolabs/kisko-compass.git"
 gem "simple_form"
 gem "mongo"
 gem "bson_ext"
