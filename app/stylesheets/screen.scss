@@ -31,7 +31,7 @@ h2 {
   color: #666;
 }
 
-#pageviews, #page_finder {
+#pageviews, #page_finder, #entries {
   @include kisko-grid-block(12);
 }
 
