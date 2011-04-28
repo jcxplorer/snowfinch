@@ -10,7 +10,11 @@ Snowfinch::Application.routes.draw do
       get :chart
     end
 
-    resources :sensors
+    resources :sensors do
+      member do
+        get :chart
+      end
+    end
 
     resources :pages do
       collection do

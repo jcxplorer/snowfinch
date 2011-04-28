@@ -1,6 +1,7 @@
 class SensorsController < ApplicationController
 
-  respond_to :html
+  respond_to :html, :except => [:chart]
+  respond_to :json, :only => [:chart]
 
   navigation :sites
 
@@ -41,6 +42,10 @@ class SensorsController < ApplicationController
       flash.notice = %{"#{sensor.name}" has been removed.}
     end
     respond_with [site, sensor]
+  end
+
+  def chart
+    respond_with sensor.chart_data
   end
 
   private

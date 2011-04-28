@@ -1,2 +1,6 @@
 = header @sensor.name do
   = link_to "Edit", edit_site_sensor_path(@site, @sensor)
+
+#entries
+  %h2 Entries
+  #chart{ :data => { :source => chart_site_sensor_path(@site, @sensor, :format => :json) }}
