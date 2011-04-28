@@ -1,0 +1,11 @@
+= simple_form_for [@site, @sensor], :html => { :id => "referrer_sensor_form" } do |f|
+  = f.hidden_field :type, :value => "referrer"
+  = f.input :name, :label => "Sensor name"
+  #sensor_referrers
+    %h2 Referrers
+    = f.simple_fields_for :hosts do |r|
+      .referrer
+        = r.input :host, :label => "Referrer host", :required => false
+        = r.input :_destroy, :as => :boolean, :label => "remove"
+  = link_to "Add a referrer", "#", :id => "add_host_link"
+  = f.button :submit, "Save"

@@ -13,7 +13,7 @@ gem "snowfinch-collector",
     :require => "snowfinch/collector"
 
 group :test do
-  gem "autotest"
+  gem "autotest", :require => false
   gem "autotest-growl", :require => false
   gem "capybara"
   gem "database_cleaner"
@@ -32,6 +32,6 @@ end
 
 group :development, :test do
   gem "rspec-rails"
-  gem "sqlite3-ruby", :require => "sqlite3"
+  gem "sqlite3-ruby"
   gem "steak"
 end

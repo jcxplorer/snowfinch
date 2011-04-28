@@ -1,4 +1,5 @@
 = header @site.name do
+  = link_to "Monitoring", site_sensors_path(@site)
   = link_to "Edit", edit_site_path(@site)
 
 - if @site.tracked?

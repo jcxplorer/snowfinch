@@ -2,16 +2,38 @@ require "spec_helper"
 
 describe Site do
   
-  let :site do
-    Factory :site, :time_zone => "Helsinki"
-  end
-
-  let :site_counts do
-    Mongo.db["site_counts"]
-  end
+  let(:site) { Factory :site, :time_zone => "Helsinki" }
+  let(:site_counts_collection) { Mongo.db["site_counts"] }
+  let(:sites_collection) { Mongo.db["sites"] }
 
   it { should validate_presence_of(:name) }
   it { should have_many(:sensors).dependent(:destroy) }
+
+  describe "#save" do
+    context "successful" do
+      it "creates a MongoDB document with site information" do
+        document = sites_collection.find_one(site.bson_id)
+        document["tz"].should == "Europe/Helsinki"
+      end
+    end
+
+    context "rollback" do
+      it "removes the MongoDB document" do
+        Site.transaction do
+          sites_collection.find_one(site.bson_id).should_not be_nil
+          raise ActiveRecord::Rollback
+        end
+        sites_collection.find_one(site.bson_id).should be_nil
+      end
+    end
+  end
+
+  describe "#destroy" do
+    it "removes the MongoDB document" do
+      site.destroy
+      sites_collection.find_one(site.bson_id).should be_nil
+    end
+  end
 
   describe "#time_zone_id" do
     it "returns the TZInfo indentifier" do
@@ -30,8 +52,7 @@ describe Site do
   
   describe "#counter_data" do
     it "contains the total pageviews for the current day" do
-      sites = Mongo.db["site_counts"]
-      sites.insert({
+      site_counts_collection.insert({
         "s" => site.bson_id,
         "y" => 2011,
         "1" => { "6" => { "c" => 200 } }
@@ -88,7 +109,7 @@ describe Site do
     it "contains today's pageviews" do
       Timecop.freeze(Time.utc(2011, 6, 8, 12))
 
-      site_counts.insert({
+      site_counts_collection.insert({
         "s" => site.bson_id, "y" => 2011,
         "6" => { "8" => { "7" => { "c" => 100 }, "10" => { "c" => 300 } } }
       })
@@ -103,7 +124,7 @@ describe Site do
     it "contains yesterday's pageviews" do
       Timecop.freeze(Time.utc(2011, 12, 7, 14))
 
-      site_counts.insert({
+      site_counts_collection.insert({
         "s" => site.bson_id, "y" => 2011,
         "12" => { "6" => { "3" => { "c" => 20 }, "6" => { "c" => 10 } } }
       })
@@ -118,12 +139,12 @@ describe Site do
 
   describe "#tracked?" do
     it "is true when there are no registered clicks" do
-      site_counts.find("s" => site.bson_id).count.should == 0
+      site_counts_collection.find("s" => site.bson_id).count.should == 0
       site.should_not be_tracked
     end
 
     it "is false when there are registered clicks" do
-      site_counts.insert("s" => site.bson_id, "y" => 2011, "c" => 1)
+      site_counts_collection.insert("s" => site.bson_id, "y" => 2011, "c" => 1)
       site.should be_tracked
     end
   end

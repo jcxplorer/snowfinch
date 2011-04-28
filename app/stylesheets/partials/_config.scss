@@ -23,17 +23,21 @@ $grid_width: 940px;
 $gutter: 20px;
 $grid_columns: 12;
 
-// plain values for the griddle.it
-$_grid_width: 940;
-$_gutter: 20;
+// set "true" to show griddle.it grid
+$grid: false;
 
 // typography
 $baseline: 18px;
 
+// plain values for the griddle.it
+$_grid_width: 940;
+$_gutter: 20;
+$_baseline: 18;
+
 // box config
-$boxborderwidth: 1px;
-$boxpadding_vertical: $baseline - $boxborderwidth; // padding is equal to lineheight minus the top & bottom borders
-$boxpadding_horizontal: 10px;
+// $boxborderwidth: 1px;
+// $boxpadding_vertical: $baseline - $boxborderwidth; // padding is equal to lineheight minus the top & bottom borders
+// $boxpadding_horizontal: 10px;
 
 // END CONFIG
 

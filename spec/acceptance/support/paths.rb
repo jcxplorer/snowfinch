@@ -44,6 +44,14 @@ module NavigationHelpers
     "/sites/#{sensor.site_id}/sensors/#{sensor.id}"
   end
 
+  def new_sensor_page(site)
+    "/sites/#{site.id}/sensors/new"
+  end
+  
+  def edit_sensor_page(sensor)
+    "/sites/#{sensor.site_id}/sensors/#{sensor.id}/edit"
+  end
+
 end
 
 RSpec.configuration.include NavigationHelpers, :type => :acceptance

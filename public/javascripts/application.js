@@ -48,4 +48,53 @@ jQuery(function() {
   if ($("#chart[data-source]").length) {
     createChart();
   }
+
+  $("#add_host_link").click(function(event) {
+    var div = $("<div/>").addClass("referrer"),
+        ts = new Date().getTime(),
+        label = $("<label/>", {
+                  for: "sensor_hosts_attributes_" + ts + "_host"
+                }).html("Referrer host"),
+        input = $("<input/>", {
+                  id: "sensor_hosts_attributes_" + ts + "_host",
+                  maxlength: 255,
+                  name: "sensor[hosts_attributes][" + ts + "][host]",
+                  size: 50,
+                  type: "text"
+                }),
+        remove = $('<a href="#" class="remove">[x]<a/>');
+
+    label.appendTo(div);
+    input.appendTo(div);
+    remove.appendTo(div);
+
+    div.appendTo("#sensor_referrers");
+
+    event.preventDefault();
+  });
+
+  if ($("#query_sensor_form").length + $("#referrer_sensor_form").length > 1) {
+    $("#referrer_sensor_form").hide();
+  }
+
+  $("#query_based_toggle").click(function(event) {
+    $("#query_sensor_form").show();
+    $("#referrer_sensor_form").hide();
+    $(this).addClass("active");
+    $(this).siblings().removeClass("active");
+    event.preventDefault();
+  });
+
+  $("#referrer_based_toggle").click(function(event) {
+    $("#referrer_sensor_form").show();
+    $("#query_sensor_form").hide();
+    $(this).addClass("active");
+    $(this).siblings().removeClass("active");
+    event.preventDefault();
+  });
+
+  $("#sensor_referrers .referrer a.remove").live("click", function(event) {
+    $(this).parent().remove();
+    event.preventDefault();
+  });
 });

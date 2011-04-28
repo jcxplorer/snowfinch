@@ -7,6 +7,8 @@ class Site < ActiveRecord::Base
   validates_presence_of :name, :time_zone
 
   before_create :create_mongo_site
+  after_rollback :remove_mongo_site
+  after_destroy :remove_mongo_site
 
   def time_zone_id
     ActiveSupport::TimeZone::MAPPING[time_zone]
@@ -39,6 +41,10 @@ class Site < ActiveRecord::Base
 
   def create_mongo_site
     self.token = Mongo.db["sites"].insert({ :tz => time_zone_id }).to_s
+  end
+
+  def remove_mongo_site
+    Mongo.db["sites"].remove("_id" => bson_id)
   end
 
   def chart_pageviews_for_date(date)
