@@ -1,10 +1,11 @@
 = header @sensor.name
 
-- case @sensor.type
-- when "query"
-  = render "query_form"
-- when "referrer"
-  = render "referrer_form"
+#content
+  - case @sensor.type
+  - when "query"
+    = render "query_form"
+  - when "referrer"
+    = render "referrer_form"
 
-= button_to "Remove this sensor", [@site, @sensor], :method => :delete,
-            :confirm => "Are you sure? There is no going back!"
+  = button_to "Remove this sensor", [@site, @sensor], :method => :delete,
+              :confirm => "Are you sure? There is no going back!"

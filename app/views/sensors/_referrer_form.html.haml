@@ -7,5 +7,6 @@
       .referrer
         = r.input :host, :label => "Referrer host", :required => false
         = r.input :_destroy, :as => :boolean, :label => "remove"
+  .clear
   = link_to "Add a referrer", "#", :id => "add_host_link"
   = f.button :submit, "Save"

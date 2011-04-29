@@ -36,7 +36,7 @@
   text-decoration: none;
 }
 
-@mixin flash {
+@mixin flash($background) {
   @include opacity(0.8);
   border-top: 1px solid #555;
   color: #fff;
@@ -46,4 +46,5 @@
   margin-top: -40px;
   right: 0;
   text-align: center;
+  background: $background;
 }

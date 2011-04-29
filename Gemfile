@@ -2,6 +2,7 @@ source :rubygems
 
 gem "rails", "3.0.7"
 
+gem "compass"
 gem "devise"
 gem "haml"
 gem "simple_form"

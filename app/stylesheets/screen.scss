@@ -225,13 +225,11 @@ ul.list {
 }
 
 #flash.notice {
-  @extend flash;
-  background: #00cc00;
+  @include flash(#00cc00);
 }
 
 #flash.alert {
-  @extend flash;
-  background: #f81315;
+  @include flash(#f81315);
 }
 
 table th {
@@ -302,4 +300,49 @@ input#page_submit {
     width: 438px;
     font-size: 24px;
   }
+}
+
+#sensor_submit {
+  display: block;
+  margin: 10px 0;
+}
+
+#sensor_referrers {
+  margin-bottom: 10px;
+
+  div.input.string {
+    float: left;
+  }
+  
+  div.input.boolean {
+    input {
+      position: relative;
+      top: 30px;
+    }
+
+    label {
+      position: relative;
+      top: 25px;
+    }
+  }
+
+  .referrer {
+    clear: both;
+  }
+
+  .remove:link {
+    text-decoration: none;
+    position: relative;
+    left: 22px;
+    color: #000;
+  }
+}
+
+.clear {
+  @include pie-clearfix;
+}
+
+.button_to input[type="submit"] {
+  position: relative;
+  left: -2px;
 }

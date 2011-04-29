@@ -69,7 +69,7 @@ feature "Monitoring" do
       click_link "Add a referrer"
       within(".referrer:last") do
         fill_in "Referrer host", :with => "snowfinch.net"
-        click_link "[x]"
+        click_link "remove"
       end
 
       click_button "Save"
@@ -161,7 +161,7 @@ feature "Monitoring" do
     end
 
     click_link "Add a referrer"
-    within :xpath, "//div[@class='referrer'][4]" do
+    within :xpath, "//div[contains(@class,'referrer')][4]" do
       fill_in "Referrer host", :with => "jaiku.com"
     end
 

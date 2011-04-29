@@ -50,7 +50,7 @@ jQuery(function() {
   }
 
   $("#add_host_link").click(function(event) {
-    var div = $("<div/>").addClass("referrer"),
+    var div = $("<div/>").addClass("input referrer"),
         ts = new Date().getTime(),
         label = $("<label/>", {
                   for: "sensor_hosts_attributes_" + ts + "_host"
@@ -62,7 +62,7 @@ jQuery(function() {
                   size: 50,
                   type: "text"
                 }),
-        remove = $('<a href="#" class="remove">[x]<a/>');
+        remove = $('<a href="#" class="remove">remove<a/>');
 
     label.appendTo(div);
     input.appendTo(div);
