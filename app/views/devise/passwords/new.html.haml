@@ -1,7 +1,8 @@
 = header "Forgot your password?"
 
-= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
-  = f.input :email
-  = f.button :submit, "Send instructions"
+#content
+  = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+    = f.input :email
+    = f.button :submit, "Send instructions"
 
-= render :partial => "devise/shared/links"
+  = render :partial => "devise/shared/links"

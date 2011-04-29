@@ -27,9 +27,10 @@
       = f.submit "View stats"
 
 - else
-  %p
-    To start tracking, you must add the following code to your site,
-    before &lt;/body&gt;.
-    Once tracking starts this message will disappear.
+  #content
+    %p
+      To start tracking, you must add the following code to your site,
+      before &lt;/body&gt;.
+      Once tracking starts, this message will disappear.
 
-  = render "tracking_code"
+    = render "tracking_code"

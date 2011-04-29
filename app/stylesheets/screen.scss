@@ -286,7 +286,10 @@ input#page_submit {
   margin-top: 1px;
 }
 
-#sessions_new {
+#sessions_new,
+#passwords_new,
+#passwords_edit,
+#unlocks_new {
   #container {
     width: 490px;
   }
@@ -297,7 +300,7 @@ input#page_submit {
 
   input[type=email],
   input[type=password] {
-    width: 438px;
+    width: 458px;
     font-size: 24px;
   }
 }
@@ -345,4 +348,18 @@ input#page_submit {
 .button_to input[type="submit"] {
   position: relative;
   left: -2px;
+}
+
+pre {
+  font-size: 12px;
+}
+
+#sites_edit {
+  h2 {
+    margin-top: 20px;
+  }
+
+  pre {
+    margin-bottom: 20px;
+  }
 }

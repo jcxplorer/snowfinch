@@ -1,10 +1,11 @@
 = header %{Edit "#{@site.name_was}"}
 
-= render "form"
+#content
+  = render "form"
 
-%h2 Tracking code
+  %h2 Tracking code
 
-= render "tracking_code"
+  = render "tracking_code"
 
-%p= button_to "Remove this site", @site, :method => :delete,
-              :confirm => "Are you sure? There is no going back!"
+  %p= button_to "Remove this site", @site, :method => :delete,
+                :confirm => "Are you sure? There is no going back!"

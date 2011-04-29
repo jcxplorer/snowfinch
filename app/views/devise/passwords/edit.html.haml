@@ -1,9 +1,10 @@
 = header "Change your password"
 
-= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-  = f.hidden_field :reset_password_token
-  = f.input :password
-  = f.input :password_confirmation
-  = f.button :submit, "Change my password"
+#content
+  = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+    = f.hidden_field :reset_password_token
+    = f.input :password
+    = f.input :password_confirmation
+    = f.button :submit, "Change my password"
 
-= render :partial => "devise/shared/links"
+  = render :partial => "devise/shared/links"
