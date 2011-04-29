@@ -34,8 +34,9 @@ Edit the following files to suit your needs:
 * `config/snowfinch.yml`
 
 Some information is stored in a relational database, so you can use any 
-that is supported by Rails. SQLite 3 might work out for you even in 
-production, as it won't hold much data or be accessed often.
+that is supported by Rails. By default it will use PostgreSQL. Edit the 
+`config/database.yml` and `Gemfile` files accordingly if you want to use 
+a different database.
 
 Install the application dependencies by running `bundle` in the 
 application directory.
