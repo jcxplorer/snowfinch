@@ -298,10 +298,18 @@ input#page_submit {
     @include grid-block(6);
   }
 
-  input[type=email],
-  input[type=password] {
+  input[type="email"],
+  input[type="password"] {
     width: 458px;
     font-size: 24px;
+  }
+
+  input[type="submit"] {
+    margin-bottom: 10px;
+  }
+
+  #content a {
+    font-size: 12px;
   }
 }
 
@@ -362,4 +370,9 @@ pre {
   pre {
     margin-bottom: 20px;
   }
+}
+
+input[type="checkbox"] {
+  position: relative;
+  top: 4px;
 }
