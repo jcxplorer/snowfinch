@@ -14,8 +14,8 @@ function updateSiteCounters() {
 
 function createChart() {
   var options = {
-        lines: { show: true, fill: true },
-        points: { show: true },
+        lines: { "show": true, "fill": true },
+        points: { "show": true },
         colors: ["#ccc", "#d18b2c"],
         yaxis: { min: 0, tickDecimals: 0 },
         xaxis: { tickSize: 2, tickFormatter: function(number) {
@@ -53,14 +53,14 @@ jQuery(function() {
     var div = $("<div/>").addClass("input referrer"),
         ts = new Date().getTime(),
         label = $("<label/>", {
-                  for: "sensor_hosts_attributes_" + ts + "_host"
+                  "for": "sensor_hosts_attributes_" + ts + "_host"
                 }).html("Referrer host"),
         input = $("<input/>", {
-                  id: "sensor_hosts_attributes_" + ts + "_host",
-                  maxlength: 255,
-                  name: "sensor[hosts_attributes][" + ts + "][host]",
-                  size: 50,
-                  type: "text"
+                  "id": "sensor_hosts_attributes_" + ts + "_host",
+                  "maxlength": 255,
+                  "name": "sensor[hosts_attributes][" + ts + "][host]",
+                  "size": 50,
+                  "type": "text"
                 }),
         remove = $('<a href="#" class="remove">remove<a/>');
 
