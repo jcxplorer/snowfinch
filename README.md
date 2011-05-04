@@ -3,16 +3,15 @@ Snowfinch
 
 Snowfinch is a realtime web analytics application written in Ruby, and 
 using MongoDB. It provides everything you need to track and visualize 
-analytics from multiple sites. While – at the moment – it may not be as 
-full featured as commercial alternatives, it is free and released under 
-the MIT license.
+analytics from multiple sites. While it may not be as full featured as 
+commercial alternatives, it is free and released under the MIT license.
 
-At the moment, Snowfinch supports: number of pageviews, active visits, 
-and visitors for a site; pageviews and active visitors for a given page; 
+Currently, Snowfinch supports: tracking of pageviews, active visits, and 
+visitors for a site; pageviews and active visitors for a given page; 
 monitoring based on a URI query key-value pair, or based on any given 
 number of referrers (think campaigns or tracking the number of visits 
 from social media sites). It's not much, but this is only the beginning.  
-Take a look at the Roadmap section to know what's coming.
+Take a look at the Roadmap section to see what's coming.
 
 
 Getting started
@@ -26,7 +25,7 @@ If you don't have Bundler installed, install it with:
 
 Clone the repository:
 
-    git clone https://github.com/snowfinch/snowfinch.git
+    git clone https://github.com/jcxplorer/snowfinch.git
 
 Edit the following files to suit your needs:
 
@@ -60,7 +59,7 @@ gem, and deploy using a `config.ru` file similar to the following
 example:
 
     require "snowfinch/collector"
-    Snowfinch::Collector.db = Mongo::Connection.new.d)("snowfinch")
+    Snowfinch::Collector.db = Mongo::Connection.new.db("snowfinch")
     run Snowfinch::Collector
 
 Now you can deploy that on several hosts and get the web scale fix you 
