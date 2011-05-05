@@ -8,9 +8,7 @@ gem "haml"
 gem "simple_form"
 gem "mongo"
 gem "bson_ext"
-gem "snowfinch-collector",
-    :git => "git@github.com:jcxplorer/snowfinch-collector.git",
-    :require => "snowfinch/collector"
+gem "snowfinch-collector", "~> 0.5.0"
 
 group :test do
   gem "autotest", :require => false
