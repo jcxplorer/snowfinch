@@ -182,6 +182,7 @@ DEPENDENCIES
   mongo
   pg
   rails (= 3.0.7)
+  rake (= 0.8.7)
   rspec-rails
   shoulda-matchers
   simple_form
