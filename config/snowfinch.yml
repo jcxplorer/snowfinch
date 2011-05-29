@@ -1,17 +1,20 @@
 development:
-  host: "snowfinch.rails.fi:3000"
-  collector_uri: "http://snowfinch.rails.fi:3000/collector"
-  mailer_sender: "support@snowfinch.net"
+  host: "localhost:3000"
+  collector_uri: "http://localhost:3000/collector"
+  mount_collector: true
+  mailer_sender: "snowfinch@example.com"
   mongo_database: "snowfinch"
 
 test:
-  host: "snowfinch.rails.fi:3000"
-  collector_uri: "http://snowfinch.rails.fi:3000/collector"
-  mailer_sender: "support@snowfinch.net"
-  mongo_database: "snowfinch_test"
+  host: "localhost:3000"
+  collector_uri: "http://localhost:3000/collector"
+  mount_collector: true
+  mailer_sender: "snowfinch@example.com"
+  mongo_database: "snowfinch"
 
 production:
-  host: "nest.snowfinch.net"
-  collector_uri: "http://nest.snowfinch.net/collector"
-  mailer_sender: "support@snowfinch.net"
+  host: "example.com"
+  collector_uri: "http://example.com/collector"
+  mount_collector: true
+  mailer_sender: "snowfinch@example.com"
   mongo_database: "snowfinch"

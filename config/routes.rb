@@ -2,7 +2,9 @@ Snowfinch::Application.routes.draw do
 
   devise_for :users
 
-  match "/collector" => Snowfinch::Collector
+  unless Snowfinch.configuration[:mount_collector] == false
+    match "/collector" => Snowfinch::Collector
+  end
 
   resources :sites do
     member do
